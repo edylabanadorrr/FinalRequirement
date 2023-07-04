@@ -15,13 +15,13 @@ const routes: Routes = [
     loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
   },
   { 
-    path: 'home', 
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  { 
     path: 'protected-page', 
     component: ProtectedPageComponent, 
     canActivate: [AuthGuard] 
+  },
+  { 
+    path: 'home', 
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'login',
