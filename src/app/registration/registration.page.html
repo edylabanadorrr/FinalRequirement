@@ -6,27 +6,36 @@
     <ion-title>Register</ion-title>
   </ion-toolbar>
 </ion-header>
+
+<!-- Registration Form -->
 <ion-content>
-  <form>
+  <form (ngSubmit)="submitForm(registerForm)" #registerForm="ngForm">
     <ion-item lines="full">
       <ion-label position="floating">First name</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" required ngModel name="firstName"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Last name</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" required ngModel name="lastName"></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" required ngModel name="username"></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input type="password" required ngModel name="password"></ion-input>
     </ion-item>
+
+<!-- Shows the error when the user haven't inputted everything in the fields -->
+    <div *ngIf="isFormSubmitted && registerForm.invalid">
+      <p>Please fill in all the required fields.</p>
+    </div>
+
+<!-- Button -->
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
+        <ion-button (click)="submitForm(registerForm)" color="danger" expand="block">Sign Up</ion-button>
       </ion-col>
     </ion-row>
   </form>
