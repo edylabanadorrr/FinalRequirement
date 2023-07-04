@@ -1,11 +1,28 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth.guard';
+import { ProtectedPageComponent } from './protected-page/protected-page.component'; // Import the ProtectedPageComponent
+
+
 const routes: Routes = [
   {
-    path: '', redirectTo: 'landing', pathMatch: 'full'},
-  { path: 'landing', loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)},
-
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
+    path: '',
+    redirectTo: 'landing',
+    pathMatch: 'full'
+  },
+  { 
+    path: 'landing', 
+    loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
+  },
+  { 
+    path: 'home', 
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  { 
+    path: 'protected-page', 
+    component: ProtectedPageComponent, 
+    canActivate: [AuthGuard] 
+  },
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
@@ -20,9 +37,18 @@ const routes: Routes = [
   },
   {
     path: 'interface',
-    loadChildren: () => import('./interface/interface.module').then( m => m.InterfacePageModule)
+    loadChildren: () => import('./consumer-interface/consumer-interface.module').then( m => m.ConsumerInterfacePageModule)
+  },
+  {
+    path: 'admin-interface',
+    loadChildren: () => import('./admin-interface/admin-interface.module').then( m => m.AdminInterfacePageModule)
+  },
+  {
+    path: 'admin-login',
+    loadChildren: () => import('./admin-login/admin-login.module').then( m => m.AdminLoginPageModule)
   },
 ];
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })

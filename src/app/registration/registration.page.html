@@ -28,7 +28,7 @@
     </ion-item>
 
 <!-- Shows the error when the user haven't inputted everything in the fields -->
-    <div *ngIf="isFormSubmitted && registerForm.invalid">
+    <div class = "fill-fields" *ngIf="isFormSubmitted && registerForm.invalid">
       <p>Please fill in all the required fields.</p>
     </div>
 
