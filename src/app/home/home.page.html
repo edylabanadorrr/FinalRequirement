@@ -1,23 +1,21 @@
-<style>
-  h1 {
-    color: #d4ff3b;
-    text-align: center;
-  }
-</style>
-
 <ion-header> 
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>
-      Ionic Form
+      Welcome!
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="auth-form">
   <ion-grid>
     <ion-row>
       <ion-col align-self-center>
         <h1>BATELEC II</h1><br><br>
-        <ion-button [routerLink]="['/registration']" expand="block" color="primary">Register</ion-button><br>
+        <ion-button [routerLink]="['/registration']" expand="block" color="primary">Register</ion-button>
+        <p class = "already">Already a user?</p>
         <ion-button [routerLink]="['/login']" expand="block" color="danger">Sign In</ion-button>
       </ion-col>
     </ion-row>
