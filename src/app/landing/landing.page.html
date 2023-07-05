@@ -1,32 +1,35 @@
-<ion-header> 
+<ion-header>
   <ion-toolbar>
-    <div slot="start" class="menu-toggle-button" *ngIf="isMinimized">
-      <ion-menu-button auto-hide="false"></ion-menu-button>
-    </div>
-    <ion-title>
-      BATELEC II
-    </ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
+      <div class="menu-toggle-button" *ngIf="isMinimized">
+        <ion-menu-button auto-hide="false"></ion-menu-button>
+      </div>
+      <ion-avatar>
+        <img src="assets/batelec-logo.png" alt="logo">
+      </ion-avatar>
+      <ion-title>
+        BATELEC II
+      </ion-title>
     </ion-buttons>
-    <ion-button>
-    ABOUT
-    </ion-button>
-    <ion-button>
-    SIGN UP
-  </ion-button>
-  <ion-button>
-    LOGIN
-  </ion-button>
-  <ion-avatar>
-    <img src="assets/batelec-logo.png" alt="Logo">
-  </ion-avatar>
+    <ion-buttons slot="end">
+      <ion-button>
+        ABOUT
+      </ion-button>
+      <ion-button>
+        SIGN UP
+      </ion-button>
+      <ion-button>
+        LOGIN
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <ion-content class="auth-form">
   <ion-grid>
     <ion-row>
       <ion-col align-self-center>
-        <h2>Batangas II Electric Cooperative, Inc.</h2>
+        <h1>Batangas II Electric Cooperative, Inc.</h1><br>
       <ion-img
         src="assets/batelec-logo.png"
         alt="batelec-image"
