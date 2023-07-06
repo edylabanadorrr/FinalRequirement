@@ -14,9 +14,9 @@ const connection = mysql.createConnection({
 connection.connect();
 
 // Handle registration route
-app.post('/register', (req, res) => {
+app.post('/registration', (req, res) => {
   const { FirstName, LastName, AccountNumber, Username, Password } = req.body;
-  const query = 'INSERT INTO consumertable (FirstName, LastName, AccountNumber, UserName, Password) VALUES (?, ?)';
+  const query = 'INSERT INTO consumertable (FirstName, LastName, AccountNumber, UserName, Password) VALUES (?, ?, ?, ?, ?)';
   connection.query(query, [FirstName, LastName, AccountNumber, Username, Password], (error, results, fields) => {
     if (error) {
       console.error('Registration failed:', error);
