@@ -24,6 +24,10 @@ export class AdminLoginPage implements OnInit {
       this.isLoggedIn = true;
       this.router.navigate(['/admin-interface']); // Navigates to the /admin-interface path
     } 
+    else if (this.username === 'cashier' && this.password === 'cashier') {
+      this.isLoggedIn = true;
+      this.router.navigate(['/landing']);
+    }
     else {
       // Display an error message or perform other actions for an invalid login attempt
       this.errorMessage = "Invalid username or password";

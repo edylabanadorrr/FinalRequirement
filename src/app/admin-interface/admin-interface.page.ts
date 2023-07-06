@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Consumer, ConsumerService } from '../consumer.service';
 
 @Component({
   selector: 'app-admin-interface',
@@ -6,10 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-interface.page.scss'],
 })
 export class AdminInterfacePage implements OnInit {
+  consumers: Consumer[] = [];
 
-  constructor() { }
+  constructor(private consumerService: ConsumerService) { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

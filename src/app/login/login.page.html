@@ -7,19 +7,24 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form>
+  <form (ngSubmit)="submitLogin(Login)" #Login="ngForm">
     <ion-item lines="full">
       <ion-label position="floating">Username</ion-label>
-      <ion-input type="text" required></ion-input>
+      <ion-input type="text" name="username" [(ngModel)]="username" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required></ion-input>
+      <ion-input type="password" name="password" [(ngModel)]="password" required></ion-input>
     </ion-item>
+
+    <!-- Error message -->
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+  <!-- Button -->
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Sign In</ion-button>
-        <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+        <ion-button (click)="submitLogin(Login)" color="danger" expand="block" [disabled] = "Login.invalid">Sign In</ion-button>
+        <a [routerLink]="['/forgot-password']" class="forgot-password">Forgot Password?</a>
       </ion-col>
     </ion-row>
   </form>

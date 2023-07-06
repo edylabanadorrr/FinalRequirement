@@ -50,7 +50,15 @@ const routes: Routes = [
   {
     path: 'about',
     loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
+  },  {
+    path: 'cashier',
+    loadChildren: () => import('./cashier/cashier.module').then( m => m.CashierPageModule)
   },
+  {
+    path: 'customer-service',
+    loadChildren: () => import('./customer-service/customer-service.module').then( m => m.CustomerServicePageModule)
+  },
+
 ];
 
 @NgModule({

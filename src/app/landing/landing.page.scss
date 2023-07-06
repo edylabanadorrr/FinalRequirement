@@ -10,23 +10,18 @@ ion-title {
   padding: 20px;
 }
 
-.ion-avatar img {
-  margin-left: 20px;
-}
+
 ion-toolbar {
   --background: #fffde6;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
 
 ion-content {
   --ion-background-color: #f5e6ff;
   --ion-grid-padding: 20px;
 }
-
-
 
 ion-button {
   margin-right: 30px;
@@ -38,6 +33,15 @@ h1 {
     text-align: center;
     font-size: 2.5rem;
   }
+
+.responsive-image {
+    max-width: 50%;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+}
+  
 
   @media (max-width: 767px) {
     ion-buttons[slot='end'] {
@@ -66,11 +70,3 @@ h1 {
       cursor: pointer;
     }
   }
-
-  .responsive-image {
-  max-width: 50%;
-  height: auto;
-  margin-right: auto;
-  margin-left: auto;
-  display: block;
-}
