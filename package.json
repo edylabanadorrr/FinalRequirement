@@ -65,5 +65,17 @@
     "ts-node": "^8.3.0",
     "typescript": "~5.0.2"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "main": "karma.conf.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edylabanadorrr/FinalRequirement.git"
+  },
+  "keywords": [
+    "framework"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edylabanadorrr/FinalRequirement/issues"
+  }
 }

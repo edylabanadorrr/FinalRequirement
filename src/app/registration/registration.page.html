@@ -12,19 +12,23 @@
   <form (ngSubmit)="submitForm(registerForm)" #registerForm="ngForm">
     <ion-item lines="full">
       <ion-label position="floating">First name</ion-label>
-      <ion-input type="text" required ngModel name="firstName"></ion-input>
+      <ion-input type="text" ngModel name="firstName" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Last name</ion-label>
-      <ion-input type="text" required ngModel name="lastName"></ion-input>
+      <ion-input type="text" ngModel name="lastName" required ></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Account Number</ion-label>
+      <ion-input type="number" ngModel name="accountNumber" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Username</ion-label>
-      <ion-input type="text" required ngModel name="username"></ion-input>
+      <ion-input type="text" ngModel name="username" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" required ngModel name="password"></ion-input>
+      <ion-input type="password" ngModel name="password" required></ion-input>
     </ion-item>
 
 <!-- Shows the error when the user haven't inputted everything in the fields -->

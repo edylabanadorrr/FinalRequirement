@@ -12,13 +12,13 @@
       </ion-title>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button>
-        ABOUT
+      <ion-button [routerLink]="['/about']" expand="block">
+        ABOUT 
       </ion-button>
-      <ion-button>
+      <ion-button [routerLink]="['/registration']" expand="block">
         SIGN UP
       </ion-button>
-      <ion-button>
+      <ion-button [routerLink]="['/login']" expand="block">
         LOGIN
       </ion-button>
     </ion-buttons>
@@ -29,14 +29,14 @@
   <ion-grid>
     <ion-row>
       <ion-col align-self-center>
-        <h1>Batangas II Electric Cooperative, Inc.</h1><br>
-      <ion-img
+        <br><h1>Batangas II Electric Cooperative, Inc.</h1><br>
+      <ion-img class = "responsive-image"
         src="assets/batelec-logo.png"
         alt="batelec-image"
         width = "400"
         height = "500"
       ></ion-img> 
-        <ion-button [routerLink]="['/home']" expand="block" color="danger">Get Started</ion-button><br>
+        <br><br><ion-button [routerLink]="['/home']" expand="block" color="danger">Get Started</ion-button><br>
       </ion-col>
     </ion-row>
   </ion-grid>

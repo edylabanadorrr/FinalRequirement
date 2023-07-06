@@ -13,18 +13,20 @@ ion-title {
 .ion-avatar img {
   margin-left: 20px;
 }
-ion-content {
-  --ion-background-color: #f7c7c3;
-  --ion-grid-padding: 20px;
-}
-
 ion-toolbar {
-  --background: #ffffff;
+  --background: #fffde6;
   display: flex;
   justify-content: space-between;
   align-items: center;
   
 }
+
+ion-content {
+  --ion-background-color: #f5e6ff;
+  --ion-grid-padding: 20px;
+}
+
+
 
 ion-button {
   margin-right: 30px;
@@ -34,6 +36,7 @@ ion-button {
 h1 {
     color: #ffdf00;
     text-align: center;
+    font-size: 2.5rem;
   }
 
   @media (max-width: 767px) {
@@ -63,3 +66,11 @@ h1 {
       cursor: pointer;
     }
   }
+
+  .responsive-image {
+  max-width: 50%;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+}
