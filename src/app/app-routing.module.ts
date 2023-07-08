@@ -44,19 +44,20 @@ const routes: Routes = [
     loadChildren: () => import('./admin-interface/admin-interface.module').then( m => m.AdminInterfacePageModule)
   },
   {
-    path: 'admin-login',
-    loadChildren: () => import('./admin-login/admin-login.module').then( m => m.AdminLoginPageModule)
-  },
-  {
     path: 'about',
     loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
-  },  {
+  },
+  {
     path: 'cashier',
     loadChildren: () => import('./cashier/cashier.module').then( m => m.CashierPageModule)
   },
   {
     path: 'customer-service',
     loadChildren: () => import('./customer-service/customer-service.module').then( m => m.CustomerServicePageModule)
+  },
+  {
+    path: 'superadmin-payment-module',
+    loadChildren: () => import('./superadmin-payment-module/superadmin-payment-module.module').then( m => m.SuperadminPaymentModulePageModule)
   },
 
 ];

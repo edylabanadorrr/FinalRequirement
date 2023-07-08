@@ -26,11 +26,16 @@ export class LoginPage implements OnInit {
       }, 300);
     } else if (this.username === 'cashier' && this.password === 'cashier') {
       this.isLoggedIn = true;
+      setTimeout(() => {
       this.router.navigate(['/cashier']); // Navigates to the /cashier path
-    } else if (this.username === 'customerservice' && this.password === 'customerservice') {
+    }, 300); 
+    } else if (this.username === 'cservice' && this.password === 'cservice') {
       this.isLoggedIn = true;
+      setTimeout(() => {
       this.router.navigate(['/customer-service']); // Navigates to the /customer-service path
-    } else {
+    }, 300);
+    }
+    else {
       // Display an error message or perform other actions for an invalid login attempt
       this.errorMessage = 'Invalid username or password';
     }
