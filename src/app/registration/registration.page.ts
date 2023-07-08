@@ -14,7 +14,7 @@ export class RegistrationPage implements OnInit {
   isFormSubmitted = false;
   submitForm(registerForm: any) {
     if (registerForm.invalid) {
-      this.isFormSubmitted = true;
+      this.isFormSubmitted = true;    
       return;
     }
     else {

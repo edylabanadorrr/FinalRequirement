@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <form (ngSubmit)="submitLogin(Login)" #Login="ngForm">
+  <form (ngSubmit)="submitLogin(loginForm)" #loginForm="ngForm">
     <ion-item lines="full">
       <ion-label position="floating">Username</ion-label>
       <ion-input type="text" name="username" [(ngModel)]="username" required></ion-input>
@@ -23,7 +23,7 @@
   <!-- Button -->
     <ion-row>
       <ion-col>
-        <ion-button (click)="submitLogin(Login)" color="danger" expand="block" [disabled] = "Login.invalid">Sign In</ion-button>
+        <ion-button (click)="submitLogin(loginForm)" color="danger" expand="block" [disabled] = "loginForm.invalid">Sign In</ion-button>
         <a [routerLink]="['/forgot-password']" class="forgot-password">Forgot Password?</a>
       </ion-col>
     </ion-row>
