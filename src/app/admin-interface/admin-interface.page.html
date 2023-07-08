@@ -11,7 +11,7 @@
   <h1>Hello World!</h1>
   <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let item of jsonData">
+    <ion-item *ngFor="let item of filteredItems">
       <ion-label>First Name: {{ item.firstName }}</ion-label>
       <ion-label>Last Name: {{ item.lastName }}</ion-label>
       <ion-label>Account Number: {{ item.accountNumber }}</ion-label>
