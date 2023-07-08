@@ -9,6 +9,7 @@
 
 <ion-content [fullscreen]="true">
   <h1>Hello World!</h1>
+  <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let item of jsonData">
       <ion-label>First Name: {{ item.firstName }}</ion-label>
