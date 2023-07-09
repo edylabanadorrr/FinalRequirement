@@ -25,7 +25,7 @@ export class AdminInterfacePage implements OnInit {
   }
 
   loadData() {
-    this.http.get<{ consumers: Consumer[] }>('/assets/super-admin-data.json').subscribe(
+    this.http.get<{ consumers: Consumer[] }>('assets/super-admin-data.json').subscribe(
       (data) => {
         this.consumers = data.consumers;
         this.filteredConsumers = this.consumers;
