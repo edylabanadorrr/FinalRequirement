@@ -1,0 +1,21 @@
+<h2>Billing Inquiry</h2>
+
+<form (ngSubmit)="submitForm()" #billingForm="ngForm">
+  <div>
+    <label for="accountNumber">Account Number:</label>
+    <input type="text" id="accountNumber" name="accountNumber" [(ngModel)]="formData.accountNumber" required>
+  </div>
+
+  <div>
+    <label for="invoiceNumber">Invoice Number:</label>
+    <input type="text" id="invoiceNumber" name="invoiceNumber" [(ngModel)]="formData.invoiceNumber" required>
+  </div>
+
+  <button type="submit" [disabled]="billingForm.invalid">Submit</button>
+</form>
+
+<div *ngIf="submitted">
+  <h3>Thank you for your inquiry!</h3>
+  <p>Account Number: {{ formData.accountNumber }}</p>
+  <p>Invoice Number: {{ formData.invoiceNumber }}</p>
+</div>

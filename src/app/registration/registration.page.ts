@@ -8,12 +8,10 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './registration.page.html',
   styleUrls: ['./registration.page.scss'],
 })
-
 export class RegistrationPage implements OnInit {
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   isFormSubmitted = false;
 
@@ -27,23 +25,25 @@ export class RegistrationPage implements OnInit {
       firstName: registerForm.value.firstName,
       lastName: registerForm.value.lastName,
       accountNumber: registerForm.value.accountNumber,
-      Username: registerForm.value.Username,
+      username: registerForm.value.username,
       password: registerForm.value.password,
     };
 
     const jsonData = JSON.stringify(formData);
 
     this.saveData(jsonData);
+    this.router.navigate(['/consumer-interface']);
   }
 
   saveData(jsonData: string) {
-    const url = 'http://localhost:8100/registration'; // Replace with your server endpoint URL
+    const url = 'assets/super-admin-data.json';
 
     // Send the POST request to the server
     this.http.post(url, jsonData).subscribe(
       (response) => {
         console.log('Data saved successfully!', response);
         // Optionally, you can show a success message to the user or navigate to a different page
+        this.router.navigate(['/consumer-interface']);
       },
       (error) => {
         console.error('Error saving data:', error);
