@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-interface Item {
+interface Consumer {
   firstName: string;
   lastName: string;
   accountNumber: number;
@@ -15,36 +15,42 @@ interface Item {
   styleUrls: ['./admin-interface.page.scss'],
 })
 export class AdminInterfacePage implements OnInit {
-  jsonData: Item[];
-  filteredItems: Item[];
+  consumers: Consumer[];
+  filteredConsumers: Consumer[];
 
   constructor(private http: HttpClient) {}
+
   ngOnInit() {
     this.loadData();
   }
 
   loadData() {
-    this.http.get<Item[]>('assets/super-admin-data.json').subscribe((data) => {
-      this.jsonData = data;
-      this.filteredItems = this.jsonData;
-      console.log(this.jsonData);
-    });
+    this.http.get<{ consumers: Consumer[] }>('/assets/super-admin-data.json').subscribe(
+      (data) => {
+        this.consumers = data.consumers;
+        this.filteredConsumers = this.consumers;
+        console.log(this.consumers);
+      },
+      (error) => {
+        console.error('Error fetching consumer data:', error);
+      }
+    );
   }
 
   searchItems(searchTerm: string) {
     if (searchTerm && searchTerm.trim() !== '') {
-      this.filteredItems = this.jsonData.filter((item) => {
+      this.filteredConsumers = this.consumers.filter((consumer) => {
         const lowerCaseSearchTerm = searchTerm.toLowerCase();
         return (
-          item.firstName.toLowerCase().includes(lowerCaseSearchTerm) ||
-          item.lastName.toLowerCase().includes(lowerCaseSearchTerm) ||
-          item.accountNumber.toString().toLowerCase().includes(lowerCaseSearchTerm) ||
-          item.userName.toLowerCase().includes(lowerCaseSearchTerm) ||
-          item.password.toLowerCase().includes(lowerCaseSearchTerm)
+          consumer.firstName.toLowerCase().includes(lowerCaseSearchTerm) ||
+          consumer.lastName.toLowerCase().includes(lowerCaseSearchTerm) ||
+          consumer.accountNumber.toString().includes(searchTerm) ||
+          consumer.userName.toLowerCase().includes(lowerCaseSearchTerm) ||
+          consumer.password.toLowerCase().includes(lowerCaseSearchTerm)
         );
       });
     } else {
-      this.filteredItems = this.jsonData;
+      this.filteredConsumers = this.consumers;
     }
   }
 }
