@@ -1,37 +1,24 @@
 const express = require('express');
 const app = express();
-const mysql = require('mysql');
-const cors = require('cors');
+const fs = require('fs');
 
-// Configure MySQL connection
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'ionic-batelec'
-});
-
-// Connect to MySQL
-connection.connect();
 app.use(express.json());
-app.use(cors());
-  
-// Handle registration route
-app.post('/registration', (req, res) => {
-  const { FirstName, LastName, AccountNumber, Username, Password } = req.body;
-  const query = 'INSERT INTO consumertable (FirstName, LastName, AccountNumber, Username, Password) VALUES (?, ?, ?, ?, ?)';
-  connection.query(query, [FirstName, LastName, AccountNumber, Username, Password], (error, results, fields) => {
-    if (error) {
-      console.error('Registration failed:', error);
-      res.status(500).send('Registration failed');
+
+app.post('http://localhost:8100/consumers', (req, res) => {
+  const jsonData = req.body;
+
+  // Write the JSON data to the data.json file
+  fs.writeFile('assets/super-admin-data.json', JSON.stringify(jsonData), (err) => {
+    if (err) {
+      console.error('Error saving data:', err);
+      res.status(500).send('Error saving data');
     } else {
-      console.log('Registration successful');
-      res.status(200).send('Registration successful');
+      console.log('Data saved successfully!');
+      res.status(200).send('Data saved successfully');
     }
   });
 });
-// Start the server
+
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
-
