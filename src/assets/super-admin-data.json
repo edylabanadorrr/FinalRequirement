@@ -12,5 +12,12 @@
     "accountNumber": 112,
     "userName": "tammy",
     "password": "rachelanne"
+  },
+  {
+    "firstName": "Yujin",
+    "lastName": "Choi",
+    "accountNumber": 113,
+    "userName": "choiyujin",
+    "password": "yujinbunny"
   }
 ]

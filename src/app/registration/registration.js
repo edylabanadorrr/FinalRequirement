@@ -4,7 +4,7 @@ const fs = require('fs');
 
 app.use(express.json());
 
-app.post('http://localhost:8100/consumers', (req, res) => {
+app.post('http://localhost:8100/assets', (req, res) => {
   const jsonData = req.body;
 
   // Write the JSON data to the data.json file
