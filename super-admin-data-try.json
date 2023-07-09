@@ -1,5 +1,4 @@
-{
-  "consumers":
+
   [
   {
     "firstName": "Edyl",
@@ -20,7 +19,6 @@
     "lastName": "Choi",
     "accountNumber": 113,
     "userName": "choiyujin",
-    "password": "yujinbunny"
+    "password": "bunny"
   }
 ]
-}
