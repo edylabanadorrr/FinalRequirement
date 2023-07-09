@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './registration.page.html',
   styleUrls: ['./registration.page.scss'],
 })
+
 export class RegistrationPage implements OnInit {
   constructor(private router: Router, private http: HttpClient) {}
 
@@ -32,14 +33,13 @@ export class RegistrationPage implements OnInit {
     const jsonData = JSON.stringify(formData);
 
     this.saveData(jsonData);
-    this.router.navigate(['/consumer-interface']);
   }
 
-  saveData(jsonData: string) {
-    const url = 'assets/super-admin-data.json';
+  saveData(formData: any) {
+    const url = 'http://localhost:4200/consumers';
 
     // Send the POST request to the server
-    this.http.post(url, jsonData).subscribe(
+    this.http.post(url, formData).subscribe(
       (response) => {
         console.log('Data saved successfully!', response);
         // Optionally, you can show a success message to the user or navigate to a different page
