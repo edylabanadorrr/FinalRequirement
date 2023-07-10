@@ -5,7 +5,7 @@ interface Consumer {
   firstName: string;
   lastName: string;
   accountNumber: number;
-  userName: string;
+  username: string;
   password: string;
 }
 
@@ -25,7 +25,7 @@ export class AdminInterfacePage implements OnInit {
   }
 
   loadData() {
-    this.http.get<{ consumers: Consumer[] }>('assets/super-admin-data.json').subscribe(
+    this.http.get<{ consumers: Consumer[] }>('assets/data/data.json').subscribe(
       (data) => {
         this.consumers = data.consumers;
         this.filteredConsumers = this.consumers;
@@ -45,7 +45,7 @@ export class AdminInterfacePage implements OnInit {
           consumer.firstName.toLowerCase().includes(lowerCaseSearchTerm) ||
           consumer.lastName.toLowerCase().includes(lowerCaseSearchTerm) ||
           consumer.accountNumber.toString().includes(searchTerm) ||
-          consumer.userName.toLowerCase().includes(lowerCaseSearchTerm) ||
+          consumer.username.toLowerCase().includes(lowerCaseSearchTerm) ||
           consumer.password.toLowerCase().includes(lowerCaseSearchTerm)
         );
       });

@@ -1,0 +1,44 @@
+{
+    "consumers":
+      [
+        {
+          "firstName": "Edyl",
+          "lastName": "Abanador",
+          "accountNumber": 111,
+          "username": "edylabanador",
+          "password": "abanador"
+        },
+        {
+          "firstName": "Rachel",
+          "lastName": "Tamayo",
+          "accountNumber": 112,
+          "username": "tammy",
+          "password": "rachelanne"
+        },
+        {
+          "firstName": "Yujin",
+          "lastName": "Choi",
+          "accountNumber": 113,
+          "username": "choiyujin",
+          "password": "yujinbunny"
+        }
+      ],
+    "super-admin": [
+        {
+          "username": "admin",
+          "password": "admin"
+        }
+      ],
+    "cashier": [
+        {
+          "username": "cashier",
+          "password": "cashier"
+        }
+      ],
+    "customer-service": [
+        {
+          "username": "cservice",
+          "password": "cservice"
+        }
+      ]
+  }
