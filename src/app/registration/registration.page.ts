@@ -21,7 +21,9 @@ export class RegistrationPage implements OnInit {
       this.isFormSubmitted = true;
       return;
     }
-
+    else {
+      this.router.navigate(['/consumer-interface']);
+    }
     const formData = {
       firstName: registerForm.value.firstName,
       lastName: registerForm.value.lastName,
