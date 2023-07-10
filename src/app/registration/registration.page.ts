@@ -22,14 +22,13 @@ export class RegistrationPage implements OnInit {
       return;
     }
     else {
-      this.router.navigate(['/consumer-interface']);
-      const { firstName, lastName, accountNumber, username, password } = registerForm.value;
+      const { firstName, lastName, accountNumber, userName, password } = registerForm.value;
     
     const data = {
       firstName,
       lastName,
       accountNumber,
-      username,
+      userName,
       password
     };
     this.http.post('http://localhost:8100/admin-interface', data)
@@ -44,7 +43,8 @@ export class RegistrationPage implements OnInit {
           // Handle any errors that occur during data saving
         }
       );
-
+      
+      this.router.navigate(['/consumer-interface']); 
   }
 }
 }
