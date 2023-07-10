@@ -23,34 +23,28 @@ export class RegistrationPage implements OnInit {
     }
     else {
       this.router.navigate(['/consumer-interface']);
-    }
-    const formData = {
-      firstName: registerForm.value.firstName,
-      lastName: registerForm.value.lastName,
-      accountNumber: registerForm.value.accountNumber,
-      username: registerForm.value.username,
-      password: registerForm.value.password,
+      const { firstName, lastName, accountNumber, username, password } = registerForm.value;
+    
+    const data = {
+      firstName,
+      lastName,
+      accountNumber,
+      username,
+      password
     };
+    this.http.post('http://localhost:8100/admin-interface', data)
+      .subscribe(
+        response => {
+          console.log('Data saved successfully!', response);
+          // Perform any additional actions after saving the data
+        },
+        
+        error => {
+          console.error('Error saving data:', error);
+          // Handle any errors that occur during data saving
+        }
+      );
 
-    const jsonData = JSON.stringify(formData);
-
-    this.saveData(jsonData);
   }
-
-  saveData(formData: any) {
-    const url = 'http://localhost:4200/consumers';
-
-    // Send the POST request to the server
-    this.http.post(url, formData).subscribe(
-      (response) => {
-        console.log('Data saved successfully!', response);
-        // Optionally, you can show a success message to the user or navigate to a different page
-        this.router.navigate(['/consumer-interface']);
-      },
-      (error) => {
-        console.error('Error saving data:', error);
-        // Handle the error as needed (e.g., display an error message)
-      }
-    );
-  }
+}
 }
