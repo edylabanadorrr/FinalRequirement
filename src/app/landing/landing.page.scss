@@ -5,11 +5,14 @@
 	font-family: 'Oswald';
 }
 
+.avatar-container {
+  margin-left: 20px;
+}
+
 ion-title {
   color: #bfa721;
   padding: 20px;
 }
-
 
 ion-toolbar {
   --background: #fffde6;
@@ -28,6 +31,10 @@ ion-button {
   color: #7b42f5;
 }
 
+.get-started {
+  margin-left: 50px;
+  margin-right: 50px;
+}
 h1 {
     color: #bfa721;
     text-align: center;
@@ -57,7 +64,7 @@ h1 {
       text-align: center;
       flex-grow: 1;
     }
-    
+
     .menu-toggle-button {
       display: flex;
       align-items: center;

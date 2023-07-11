@@ -4,10 +4,11 @@
       <div class="menu-toggle-button" *ngIf="isMinimized">
         <ion-menu-button auto-hide="false"></ion-menu-button>
       </div>
-      <div class="avatar-container"></div>
+      <div class="avatar-container">
       <ion-avatar>
         <img src="assets/batelec-logo.png" alt="logo">
       </ion-avatar>
+      </div>
       <ion-title>
         BATELEC II
       </ion-title>
@@ -37,7 +38,7 @@
         width = "400"
         height = "500"
       ></ion-img> 
-        <br><br><ion-button [routerLink]="['/home']" expand="block" color="danger">Get Started</ion-button><br>
+        <br><br><ion-button class = "get-started" [routerLink]="['/home']" shape = "round" expand="block" color="danger">Get Started</ion-button><br>
       </ion-col>
     </ion-row>
   </ion-grid>
