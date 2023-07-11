@@ -1,0 +1,9 @@
+<consumers>
+    <consumer>
+        <firstName>Edyl</firstName>
+        <lastName>Abanador</lastName>
+        <accountNumber>111</accountNumber>
+        <username>edyl</username>
+        <password>abanador</password>
+    </consumer>
+</consumers>

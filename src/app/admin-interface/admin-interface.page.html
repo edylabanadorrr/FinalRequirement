@@ -39,21 +39,21 @@
         <h1 class="info">Consumers Information</h1>
         <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
         <ion-list>
-          <ion-item *ngFor="let consumer of filteredConsumers">
+          <ion-item *ngFor="let consumer of filteredConsumers" (click) = "populateConsumerData">
             <ion-label class="entity">First Name:</ion-label>
-            <ion-label class="consumer-data">{{ consumer.firstName }}</ion-label>
+            <ion-label class="consumer-data" id = "firstName">{{ consumer.firstName }}</ion-label>
 
             <ion-label class="entity">Last Name:</ion-label>
-            <ion-label class="consumer-data">{{ consumer.lastName }}</ion-label>
+            <ion-label class="consumer-data" id = "lastName">{{ consumer.lastName }}</ion-label>
 
             <ion-label class="entity">Account Number:</ion-label>
-            <ion-label class="consumer-data">{{ consumer.accountNumber }}</ion-label>
+            <ion-label class="consumer-data" id = "accountNumber">{{ consumer.accountNumber }}</ion-label>
 
             <ion-label class="entity">Username:</ion-label>
-            <ion-label class="consumer-data">{{ consumer.username }}</ion-label>
+            <ion-label class="consumer-data" id = "username">{{ consumer.username }}</ion-label>
 
             <ion-label class="entity">Password:</ion-label>
-            <ion-label class="consumer-data">{{ consumer.password }}</ion-label>
+            <ion-label class="consumer-data" id = "password">{{ consumer.password }}</ion-label>
           </ion-item>
         </ion-list>
     <br>
