@@ -1,44 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+
+interface Credential {
+  username: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  styleUrls: ['./login.page.scss']
 })
-
-export class LoginPage implements OnInit {
+export class LoginPage {
   username: string;
   password: string;
-  isLoggedIn: boolean = false;
-  errorMessage: string = "";
+  errorMessage: string;
+  credentials: Credential[];
 
-  constructor(private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-  }
-  submitLogin(loginForm: NgForm) {
-    if (this.username === 'admin' && this.password === 'admin') {
-      this.isLoggedIn = true;
-      setTimeout(() => {
-        this.router.navigate(['/admin-interface']); // Navigates to the /admin-interface path
-      }, 300);
-    } else if (this.username === 'cashier' && this.password === 'cashier') {
-      this.isLoggedIn = true;
-      setTimeout(() => {
-      this.router.navigate(['/cashier']); // Navigates to the /cashier path
-    }, 300); 
-    } else if (this.username === 'cservice' && this.password === 'cservice') {
-      this.isLoggedIn = true;
-      setTimeout(() => {
-      this.router.navigate(['/customer-service']); // Navigates to the /customer-service path
-    }, 300);
-    }
-    else {
-      // Display an error message or perform other actions for an invalid login attempt
-      this.errorMessage = 'Invalid username or password';
-    }
+    this.loadUsers();
   }
 
+  loadUsers() {
+    this.http.get<{ credentials: Credential[] }>('assets/data/data.json').subscribe(
+      (data) => {
+        this.credentials = data.credentials;
+      },
+      (error) => {
+        console.error('Error fetching user data:', error);
+      }
+    );
+  }
+
+  submitLogin(loginForm: any) {
+    const matchedUser = this.credentials.find(credentials => credentials.username === this.username && credentials.password === this.password);
+    if (matchedUser) {
+      console.log('Login successful');
+      this.router.navigate(['/consumer-interface']);
+      // Perform necessary actions after successful login
+    } 
+      else {
+      console.log('Invalid credentials');
+      // Display an error message or perform other actions for invalid credentials
+      this.errorMessage = 'Invalid credentials';
+    }
+  }
 }

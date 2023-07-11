@@ -12,6 +12,7 @@
       <ion-label position="floating">Username</ion-label>
       <ion-input type="text" name="username" [(ngModel)]="username" required></ion-input>
     </ion-item>
+
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
       <ion-input type="password" name="password" [(ngModel)]="password" required></ion-input>
@@ -23,7 +24,7 @@
   <!-- Button -->
     <ion-row>
       <ion-col>
-        <ion-button (click)="submitLogin(loginForm)" color="danger" expand="block" [disabled] = "loginForm.invalid">Sign In</ion-button>
+        <ion-button type = "submit" shape = "round" color="danger" expand="block" [disabled] = "loginForm.invalid">Sign In</ion-button>
         <a [routerLink]="['/forgot-password']" class="forgot-password">Forgot Password?</a>
       </ion-col>
     </ion-row>

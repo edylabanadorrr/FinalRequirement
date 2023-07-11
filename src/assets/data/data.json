@@ -1,5 +1,33 @@
 {
-    "consumers":
+    "credentials": [
+        {
+          "username": "edyl",
+          "password": "edyl"
+        },
+        {
+          "username": "rachel",
+          "password": "tammy"
+        }
+    ],
+    "super-admin": [
+        {
+          "username": "admin",
+          "password": "admin"
+        }
+    ],
+    "cashier": [
+        {
+          "username": "cashier",
+          "password": "cashier"
+        }
+      ],
+    "customer-service": [
+        {
+          "username": "cservice",
+          "password": "cservice"
+        }
+      ],
+      "consumers":
       [
         {
           "firstName": "Edyl",
@@ -21,24 +49,6 @@
           "accountNumber": 113,
           "username": "choiyujin",
           "password": "yujinbunny"
-        }
-      ],
-    "super-admin": [
-        {
-          "username": "admin",
-          "password": "admin"
-        }
-      ],
-    "cashier": [
-        {
-          "username": "cashier",
-          "password": "cashier"
-        }
-      ],
-    "customer-service": [
-        {
-          "username": "cservice",
-          "password": "cservice"
         }
       ]
   }
