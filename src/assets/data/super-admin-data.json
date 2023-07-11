@@ -5,22 +5,36 @@
     "firstName": "Edyl",
     "lastName": "Abanador",
     "accountNumber": 111,
-    "userName": "edylabanador",
+    "username": "edylabanador",
     "password": "abanador"
   },
   {
     "firstName": "Rachel",
     "lastName": "Tamayo",
     "accountNumber": 112,
-    "userName": "tammy",
+    "username": "tammy",
     "password": "rachelanne"
   },
   {
     "firstName": "Yujin",
     "lastName": "Choi",
     "accountNumber": 113,
-    "userName": "choiyujin",
+    "username": "choiyujin",
     "password": "yujinbunny"
+  },
+  {
+    "firstName": "Ian",
+    "lastName": "Gutierrez",
+    "accountNumber": 114,
+    "username": "ian",
+    "password": "gutierrez"
+  },
+  {
+    "firstName": "Aaron",
+    "lastName": "Mendoza",
+    "accountNumber": 115,
+    "username": "aaron",
+    "password": "mendoza"
   }
 ]
 }

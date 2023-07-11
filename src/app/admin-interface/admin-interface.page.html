@@ -8,31 +8,56 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1 class="info">Consumers Information</h1>
-  <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let consumer of filteredConsumers">
+  <div class="container">
+    <div class="row">
+      <div class="column-left">
+        <h3 class="heading">Click on a plant to display its information.</h3>
+        <br><br>
+        <label class="firstname-left" for="firstName">First Name:</label><br>
+        <input class="inputText" type="text" id="firstName" name="firstName"><br><br>
 
-      <ion-label class="entity">First Name:</ion-label>
-      <ion-label class="consumer-data">{{ consumer.firstName }}</ion-label>
+        <label class="lastname-left" for="lastName">Last Name:</label><br>
+        <input class="inputText" type="text" id="lastName" name="lastName"><br><br>
 
-      <ion-label class="entity">Last Name:</ion-label>
-      <ion-label class="consumer-data">{{ consumer.lastName }}</ion-label>
+        <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
+        <input class="inputText" type="text" id="accountNumber" name="accountNumber"><br><br>
 
-      <ion-label class="entity">Account Number:</ion-label>
-      <ion-label class="consumer-data">{{ consumer.accountNumber }}</ion-label>
+        <label class="username-left" for="username">Username:</label><br>
+        <input class="inputText" type="text" id="username" name="username"><br><br>
 
-      <ion-label class="entity">Username:</ion-label>
-      <ion-label class="consumer-data">{{ consumer.username }}</ion-label>
+        <label class="password-left" for="password">Password:</label><br>
+        <input class="inputText" type="text" id="password" name="password"><br><br>
 
-      <ion-label class="entity">Password:</ion-label>
-      <ion-label class="consumer-data">{{ consumer.password }}</ion-label>
+        <button class="saveButton" onclick="updatePlantData()">Save</button>
+      </div>
 
-    </ion-item>
-  </ion-list>
+      <div class="column-right">
+        <ion-img class="photo-about" src="assets/photo-about.jpg" alt="photo-about"></ion-img>
+      </div>
+    </div>
+  </div>
+        <h1 class="info">Consumers Information</h1>
+        <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
+        <ion-list>
+          <ion-item *ngFor="let consumer of filteredConsumers">
+            <ion-label class="entity">First Name:</ion-label>
+            <ion-label class="consumer-data">{{ consumer.firstName }}</ion-label>
 
-  <br>
-  <ion-button [routerLink]="['/superadmin-payment-module']" shape = "round" expand="block" color="success">
+            <ion-label class="entity">Last Name:</ion-label>
+            <ion-label class="consumer-data">{{ consumer.lastName }}</ion-label>
+
+            <ion-label class="entity">Account Number:</ion-label>
+            <ion-label class="consumer-data">{{ consumer.accountNumber }}</ion-label>
+
+            <ion-label class="entity">Username:</ion-label>
+            <ion-label class="consumer-data">{{ consumer.username }}</ion-label>
+
+            <ion-label class="entity">Password:</ion-label>
+            <ion-label class="consumer-data">{{ consumer.password }}</ion-label>
+          </ion-item>
+        </ion-list>
+    <br>
+  <ion-button [routerLink]="['/superadmin-payment-module']" shape="round" expand="block" color="success">
     Payment Module
   </ion-button>
   <br>
