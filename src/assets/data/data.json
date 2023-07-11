@@ -1,34 +1,37 @@
 {
     "credentials": [
         {
-          "username": "edyl",
+          "username": "111",
           "password": "edyl"
         },
         {
-          "username": "rachel",
+          "username": "112",
           "password": "tammy"
         }
-    ],
-    "super-admin": [
+      ],
+
+      "superadmin": [
         {
           "username": "admin",
           "password": "admin"
         }
-    ],
+      ],
+
     "cashier": [
         {
           "username": "cashier",
           "password": "cashier"
         }
       ],
+
     "customer-service": [
         {
           "username": "cservice",
           "password": "cservice"
         }
       ],
-      "consumers":
-      [
+
+      "consumers": [
         {
           "firstName": "Edyl",
           "lastName": "Abanador",

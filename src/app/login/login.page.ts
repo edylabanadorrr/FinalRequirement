@@ -7,6 +7,10 @@ interface Credential {
   password: string;
 }
 
+interface SuperAdmin {
+  username: string;
+  password: string;
+}
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -37,15 +41,35 @@ export class LoginPage {
 
   submitLogin(loginForm: any) {
     const matchedUser = this.credentials.find(credentials => credentials.username === this.username && credentials.password === this.password);
+
     if (matchedUser) {
       console.log('Login successful');
+      setTimeout(() => {
       this.router.navigate(['/consumer-interface']);
-      // Perform necessary actions after successful login
-    } 
-      else {
-      console.log('Invalid credentials');
-      // Display an error message or perform other actions for invalid credentials
-      this.errorMessage = 'Invalid credentials';
+    }, 300);
+  }
+    else if (this.username === "admin" && this.password === "admin") {
+      console.log('Login successful');
+      setTimeout(() => {
+      this.router.navigate(['/admin-interface']);
+    }, 300);
+  }
+    else if (this.username === "cashier" && this.password === "cashier") {
+      console.log('Login successful');
+      setTimeout(() => {
+      this.router.navigate(['/cashier']);
+    }, 300);
+  }
+    else if (this.username === "cservice" && this.password === "cservice") {
+      console.log('Login successful');
+      setTimeout(() => {
+      this.router.navigate(['/customer-service']);
+    }, 300);
+  }
+    else {
+    console.log('Invalid credentials');
+    // Display an error message or perform other actions for invalid credentials
+    this.errorMessage = 'Invalid credentials';
     }
   }
 }
