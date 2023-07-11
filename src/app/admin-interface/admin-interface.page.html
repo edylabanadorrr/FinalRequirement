@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <h1 class = "cooperative-name">Batangas II Electric Cooperative, Inc</h1>
   <div class="container">
     <div class="row">
       <div class="column-left">
@@ -39,7 +40,7 @@
         <h1 class="info">Consumers Information</h1>
         <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
         <ion-list>
-          <ion-item *ngFor="let consumer of filteredConsumers" (click) = "populateConsumerData">
+          <ion-item *ngFor="let consumer of filteredConsumers">
             <ion-label class="entity">First Name:</ion-label>
             <ion-label class="consumer-data" id = "firstName">{{ consumer.firstName }}</ion-label>
 
@@ -57,8 +58,6 @@
           </ion-item>
         </ion-list>
     <br>
-  <ion-button [routerLink]="['/superadmin-payment-module']" shape="round" expand="block" color="success">
-    Payment Module
-  </ion-button>
+  <ion-button [routerLink]="['/superadmin-payment-module']" shape="round" expand="block" color="success">Payment Module</ion-button>
   <br>
 </ion-content>

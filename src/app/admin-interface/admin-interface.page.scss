@@ -4,6 +4,12 @@
 	padding: 0;
 	font-family: 'Oswald';
 }
+
+.cooperative-name {
+    color: #bfa721;
+    display: flex;
+    justify-content: center;
+}
 /* Label and Input - Left side */
 
 .firstname-left {
@@ -53,13 +59,16 @@
     margin-left: 20px;
 }
 
-.batelec-logo {
+.photo-about {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: auto;
     width: 100%;
     margin-top: 20px;
-    justify-content: center;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 20px;
 }
 
 /* Consumer Info */
@@ -70,11 +79,21 @@
     color: #95A5A6;
 }
 
-
 .entity {
     color: #E74C3C;
 }
 
 .consumer-data {
     color: #95A5A6;
+}
+
+@media (max-width: 767px) {
+    .entity {
+        display: none;
+    }
+    .photo-about
+    {
+        display: none;
+    }
+      
 }
