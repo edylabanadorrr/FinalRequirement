@@ -2,7 +2,7 @@
     "credentials": [
         {
           "username": "111",
-          "password": "edyl"
+          "password": "abanador"
         },
         {
           "username": "112",
@@ -12,21 +12,21 @@
 
       "superadmin": [
         {
-          "username": "admin",
+          "username": "1111",
           "password": "admin"
         }
       ],
 
     "cashier": [
         {
-          "username": "cashier",
+          "username": "2222",
           "password": "cashier"
         }
       ],
 
     "customer-service": [
         {
-          "username": "cservice",
+          "username": "3333",
           "password": "cservice"
         }
       ],
@@ -43,8 +43,8 @@
           "firstName": "Rachel",
           "lastName": "Tamayo",
           "accountNumber": 112,
-          "username": "tammy",
-          "password": "rachelanne"
+          "username": "rachelanne",
+          "password": "tammy"
         },
         {
           "firstName": "Yujin",

@@ -15,24 +15,26 @@
         <h3 class="heading">Click on a consumer to display its information.</h3>
         <br><br>
         <label class="firstname-left" for="firstName">First Name:</label><br>
-        <input class="inputText" type="text" id="firstName" name="firstName"><br><br>
+        <input class="inputText" placeholder = "Enter first name" type="text" id="firstName" name="firstName"><br><br>
 
         <label class="lastname-left" for="lastName">Last Name:</label><br>
-        <input class="inputText" type="text" id="lastName" name="lastName"><br><br>
+        <input class="inputText" placeholder = "Enter last name" type="text" id="lastName" name="lastName"><br><br>
 
         <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
-        <input class="inputText" type="text" id="accountNumber" name="accountNumber"><br><br>
+        <input class="inputText" placeholder = "Enter account number" type="text" id ="accountNumber" name="accountNumber"><br><br>
 
         <label class="username-left" for="username">Username:</label><br>
-        <input class="inputText" type="text" id="username" name="username"><br><br>
+        <input class="inputText" placeholder = "Enter username" type="text" id="username" name="username"><br><br>
 
         <label class="password-left" for="password">Password:</label><br>
-        <input class="inputText" type="password" id="password" name="password"><br><br>
+        <input class="inputText" placeholder = "Enter password" type="password" id="password" name="password"><br><br>
 
         <div class = "button-container">
-        <button class="addButton" (click)="updateData()">Add</button>
-        <button class="updateButton" (click)="updateData()">Update</button>
+        <button class="addButton" onclick="addConsumer()">Add</button>
+        <button class="updateButton" onclick = "updateData()">Update</button>
         <button class="deleteButton" (click)="updateData()">Delete</button>
+        <script src = "admin-interface.page.ts" type = "module"></script>
+
       </div>
     </div>
 

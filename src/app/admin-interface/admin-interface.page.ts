@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from 'src/app/data.service';
+import express, { Request, Response } from 'express';
+import fs from 'fs';
+import { readFileSync, writeFileSync } from 'fs';
 
 interface Consumer {
   firstName: string;

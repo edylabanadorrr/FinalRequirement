@@ -7,10 +7,6 @@ interface Credential {
   password: string;
 }
 
-interface SuperAdmin {
-  username: string;
-  password: string;
-}
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -48,19 +44,19 @@ export class LoginPage {
       this.router.navigate(['/consumer-interface']);
     }, 300);
   }
-    else if (this.username === "admin" && this.password === "admin") {
+    else if (this.username === "1111" && this.password === "admin") {
       console.log('Login successful');
       setTimeout(() => {
       this.router.navigate(['/admin-interface']);
     }, 300);
   }
-    else if (this.username === "cashier" && this.password === "cashier") {
+    else if (this.username === "2222" && this.password === "cashier") {
       console.log('Login successful');
       setTimeout(() => {
       this.router.navigate(['/cashier']);
     }, 300);
   }
-    else if (this.username === "cservice" && this.password === "cservice") {
+    else if (this.username === "3333" && this.password === "cservice") {
       console.log('Login successful');
       setTimeout(() => {
       this.router.navigate(['/customer-service']);
