@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
   <h1 class = "cooperative-name">Batangas II Electric Cooperative, Inc</h1>
   <div class="container">
     <div class="row">
@@ -29,7 +29,7 @@
         <label class="password-left" for="password">Password:</label><br>
         <input class="inputText" type="password" id="password" name="password"><br><br>
 
-        <button class="saveButton" onclick="updatePlantData()">Save</button>
+        <button class="updateButton" onclick="updatePlantData()">Update</button>
       </div>
 
       <div class="column-right">
@@ -40,7 +40,7 @@
         <h1 class="info">Consumers Information</h1>
         <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
         <ion-list>
-          <ion-item *ngFor="let consumer of filteredConsumers">
+          <ion-item *ngFor="let consumer of filteredConsumers" (click) = "populateFields(consumer)">
             <ion-label class="entity">First Name:</ion-label>
             <ion-label class="consumer-data" id = "firstName">{{ consumer.firstName }}</ion-label>
 

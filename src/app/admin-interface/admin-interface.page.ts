@@ -35,6 +35,20 @@ export class AdminInterfacePage implements OnInit {
       }
     );
   }
+  populateFields(consumer: any) {
+    const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
+    const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
+    const accountNumberInput = document.getElementById('accountNumber') as HTMLInputElement;
+    const usernameInput = document.getElementById('username') as HTMLInputElement;
+    const passwordInput = document.getElementById('password') as HTMLInputElement;
+
+    firstNameInput.value = consumer.firstName;
+    lastNameInput.value = consumer.lastName;
+    accountNumberInput.value = consumer.accountNumber;
+    usernameInput.value = consumer.username;
+    passwordInput.value = consumer.password;
+  }
+
 
   searchItems(searchTerm: string) {
     if (searchTerm && searchTerm.trim() !== '') {
@@ -52,6 +66,7 @@ export class AdminInterfacePage implements OnInit {
       this.filteredConsumers = this.consumers;
     }
   }
+  
   maskPassword(password: string): string {
     return '*'.repeat(password.length);
   }
