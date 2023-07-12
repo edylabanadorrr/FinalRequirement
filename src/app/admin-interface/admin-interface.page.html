@@ -29,9 +29,12 @@
         <label class="password-left" for="password">Password:</label><br>
         <input class="inputText" type="password" id="password" name="password"><br><br>
 
-        <button class="updateButton" (click)="updateConsumerData(consumers)">Update</button>
-
+        <div class = "button-container">
+        <button class="addButton" (click)="updateData()">Add</button>
+        <button class="updateButton" (click)="updateData()">Update</button>
+        <button class="deleteButton" (click)="updateData()">Delete</button>
       </div>
+    </div>
 
       <div class="column-right">
         <ion-img class="photo-about" src="assets/photo-about.jpg" alt="photo-about"></ion-img>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DataService } from 'src/app/data.service';
 
 interface Consumer {
   firstName: string;
@@ -14,11 +15,12 @@ interface Consumer {
   templateUrl: './admin-interface.page.html',
   styleUrls: ['./admin-interface.page.scss'],
 })
+
 export class AdminInterfacePage implements OnInit {
   consumers: Consumer[];
   filteredConsumers: Consumer[];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private dataService: DataService) {}
 
   ngOnInit() {
     this.loadData();
@@ -35,6 +37,28 @@ export class AdminInterfacePage implements OnInit {
       }
     );
   }
+
+  updateData() {
+    const updatedData = {
+      firstName: '',
+      lastName: '',
+      accountNumber: '',
+      username: '',
+      password: ''
+    };
+    this.dataService.updateConsumerData(updatedData)
+      .subscribe(
+        () => {
+          // Handle success, e.g., show a success message
+          console.log('Data updated successfully');
+        },
+        error => {
+          // Handle error, e.g., show an error message
+          console.error('Error updating data:', error);
+        }
+      );
+  }
+
   populateFields(consumer: any) {
     const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
     const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
@@ -68,38 +92,6 @@ export class AdminInterfacePage implements OnInit {
   
   maskPassword(password: string): string {
     return '*'.repeat(password.length);
-  }
-  
-  updateConsumerData(consumers: any) {
-    var selectedRow = consumers;
-
-    if (!selectedRow) {
-      alert('Please select a consumer from the table.');
-      return;
-    }
-    const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
-    const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
-    const accountNumberInput = document.getElementById('accountNumber') as HTMLInputElement;
-    const usernameInput = document.getElementById('username') as HTMLInputElement;
-    const passwordInput = document.getElementById('password') as HTMLInputElement;
-
-    firstNameInput.value = consumers.firstName;
-    lastNameInput.value = consumers.lastName;
-    accountNumberInput.value = consumers.accountNumber;
-    usernameInput.value = consumers.username;
-    passwordInput.value = consumers.password;
-    
-    this.http.get<{ consumers: Consumer[] }>('assets/data/super-admin-data.json').subscribe(
-      (data) => {
-        this.consumers = data.consumers;
-        this.filteredConsumers = this.consumers;
-        console.log(this.consumers);
-        this.clearForm();
-      },
-      (error) => {
-        console.error('Error fetching consumer data:', error);
-      }
-    );
   }
   
   clearForm() {
