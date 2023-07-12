@@ -62,6 +62,10 @@ const routes: Routes = [
     path: 'customer-service-manage',
     loadChildren: () => import('./customer-service-manage/customer-service-manage.module').then( m => m.CustomerServiceManagePageModule)
   },
+  {
+    path: 'billing-inquiry',
+    loadChildren: () => import('./billing-inquiry/billing-inquiry.module').then( m => m.BillingInquiryPageModule)
+  },
 
 
 ];
