@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row">
       <div class="column-left">
-        <h3 class="heading">Click on a plant to display its information.</h3>
+        <h3 class="heading">Click on a consumer to display its information.</h3>
         <br><br>
         <label class="firstname-left" for="firstName">First Name:</label><br>
         <input class="inputText" type="text" id="firstName" name="firstName"><br><br>
@@ -27,7 +27,7 @@
         <input class="inputText" type="text" id="username" name="username"><br><br>
 
         <label class="password-left" for="password">Password:</label><br>
-        <input class="inputText" type="text" id="password" name="password"><br><br>
+        <input class="inputText" type="password" id="password" name="password"><br><br>
 
         <button class="saveButton" onclick="updatePlantData()">Save</button>
       </div>
@@ -54,7 +54,7 @@
             <ion-label class="consumer-data" id = "username">{{ consumer.username }}</ion-label>
 
             <ion-label class="entity">Password:</ion-label>
-            <ion-label class="consumer-data" id = "password">{{ consumer.password }}</ion-label>
+            <ion-label class="consumer-data" id="password">{{ maskPassword(consumer.password) }}</ion-label>
           </ion-item>
         </ion-list>
     <br>

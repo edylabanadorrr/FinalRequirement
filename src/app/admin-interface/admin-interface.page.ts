@@ -52,7 +52,7 @@ export class AdminInterfacePage implements OnInit {
       this.filteredConsumers = this.consumers;
     }
   }
-  
-  
-  
+  maskPassword(password: string): string {
+    return '*'.repeat(password.length);
+  }
 }
