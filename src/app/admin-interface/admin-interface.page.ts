@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { DataService } from 'src/app/data.service';
-import express, { Request, Response } from 'express';
-import fs from 'fs';
-import { readFileSync, writeFileSync } from 'fs';
 
 interface Consumer {
   firstName: string;
@@ -11,7 +7,7 @@ interface Consumer {
   accountNumber: string;
   areaNumber: string;
   municipality: string;
-  username: string;
+  username: string; 
   password: string;
 }
 
@@ -22,107 +18,39 @@ interface Consumer {
 })
 
 export class AdminInterfacePage implements OnInit {
-  consumers: Consumer[];
-  filteredConsumers: Consumer[];
+  consumers: Consumer[] = [];
+  searchText: string = '';
 
-  constructor(private http: HttpClient, private dataService: DataService) {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.loadData();
+    this.fetchConsumers();
   }
-  
-  loadData() {
-    this.http.get<{ consumers: Consumer[] }>('assets/data/super-admin-data.json').subscribe(
+  fetchConsumers() {
+    this.http.get<any>('http://localhost/ionic/fetch.php').subscribe(
       (data) => {
-        this.consumers = data.consumers;
-        this.filteredConsumers = this.consumers;
-        console.log(this.consumers);
-      },
-      (error) => {
-        console.error('Error fetching consumer data:', error);
-      }
+      this.consumers = data;
+      console.log(this.consumers);
+    },
+    (error) => {
+      console.error('Error fetching consumer data:', error);
+    }
     );
   }
 
-  updateData() {
-    const updatedData = {
-      firstName: '',
-      lastName: '',
-      accountNumber: '',
-      areaNumber: '',
-      municipality: '',
-      username: '',
-      password: ''
-    };
-    this.dataService.updateConsumerData(updatedData)
-      .subscribe(
-        () => {
-          // Handle success, e.g., show a success message
-          console.log('Data updated successfully');
-        },
-        error => {
-          // Handle error, e.g., show an error message
-          console.error('Error updating data:', error);
-        }
-      );
-  }
-
-  populateFields(consumer: any) {
-    const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
-    const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
-    const accountNumberInput = document.getElementById('accountNumber') as HTMLInputElement;
-    const areaNumberInput = document.getElementById('areaNumber') as HTMLInputElement;
-    const municipalityInput = document.getElementById('municipality') as HTMLInputElement;
-    const usernameInput = document.getElementById('username') as HTMLInputElement;
-    const passwordInput = document.getElementById('password') as HTMLInputElement;
-
-    firstNameInput.value = consumer.firstName;
-    lastNameInput.value = consumer.lastName;
-    accountNumberInput.value = consumer.accountNumber;
-    areaNumberInput.value = consumer.areaNumber;
-    municipalityInput.value = consumer.municipality;
-    usernameInput.value = consumer.username;
-    passwordInput.value = consumer.password;
-  }
-
-  searchItems(searchTerm: string) {
-    if (searchTerm && searchTerm.trim() !== '') {
-      this.filteredConsumers = this.consumers.filter((consumer) => {
-        const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return (
-          consumer.firstName.toLowerCase().includes(lowerCaseSearchTerm) ||
-          consumer.lastName.toLowerCase().includes(lowerCaseSearchTerm) ||
-          consumer.accountNumber.toString().includes(searchTerm) ||
-          consumer.areaNumber.toString().includes(searchTerm) ||
-          consumer.municipality.toString().includes(searchTerm) ||
-          consumer.username.toLowerCase().includes(lowerCaseSearchTerm) ||
-          consumer.password.toLowerCase().includes(lowerCaseSearchTerm)
-        );
-      });
-    } else {
-      this.filteredConsumers = this.consumers;
-    }
-  }
-  
   maskPassword(password: string): string {
     return '*'.repeat(password.length);
   }
-  
-  clearForm() {
-    const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
-    const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
-    const accountNumberInput = document.getElementById('accountNumber') as HTMLInputElement;
-    const areaNumberInput = document.getElementById('areaNumber') as HTMLInputElement;
-    const municipalityInput = document.getElementById('municipality') as HTMLInputElement;
-    const usernameInput = document.getElementById('username') as HTMLInputElement;
-    const passwordInput = document.getElementById('password') as HTMLInputElement;
 
-    firstNameInput.value = '';
-    lastNameInput.value = '';
-    accountNumberInput.value = '';
-    areaNumberInput.value = '';
-    municipalityInput.value = '';
-    usernameInput.value = '';
-    passwordInput.value = '';
+  get filteredConsumers(): Consumer[] {
+    return this.consumers.filter(consumer => {
+      const fullName = consumer.firstName + ' ' + consumer.lastName;
+      return fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        consumer.accountNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        consumer.areaNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        consumer.municipality.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        consumer.username.toLowerCase().includes(this.searchText.toLowerCase()) ||
+        consumer.password.toLowerCase().includes(this.searchText.toLowerCase());
+    });
   }
 }

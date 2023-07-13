@@ -8,62 +8,75 @@
 </ion-header>
 
 <ion-content>
-  <h1 class = "cooperative-name">Batangas II Electric Cooperative, Inc</h1>
+  <h1 class="cooperative-name">Batangas II Electric Cooperative, Inc</h1>
   <div class="container">
     <div class="row">
       <div class="column-left">
         <h3 class="heading">Click on a consumer to display its information.</h3>
         <br><br>
         <label class="firstname-left" for="firstName">First Name:</label><br>
-        <input class="inputText" placeholder = "Enter First name" type="text" id="firstName" name="firstName"><br><br>
+        <input class="inputText" placeholder="Enter First name" type="text" id="firstName" name="firstName"><br><br>
 
         <label class="lastname-left" for="lastName">Last Name:</label><br>
-        <input class="inputText" placeholder = "Enter Last name" type="text" id="lastName" name="lastName"><br><br>
+        <input class="inputText" placeholder="Enter Last name" type="text" id="lastName" name="lastName"><br><br>
 
         <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
-        <input class="inputText" placeholder = "Enter Account number" type="text" id ="accountNumber" name="accountNumber"><br><br>
+        <input class="inputText" placeholder="Enter Account number" type="text" id="accountNumber" name="accountNumber"><br><br>
 
-        <label class="areanumber-left" for="areaNumber">Area:</label><br>
-        <input class="inputText" placeholder = "Enter Area Number" type="number" id ="areaNumber" name="areaNumber"><br><br>
+        <label class="areanumber-left" for="areaNumber">Area Number:</label><br>
+        <input class="inputText" placeholder="Enter Area Number" type="number" id="areaNumber" name="areaNumber"><br><br>
 
         <label class="municipality-left" for="municipality">Municipality:</label><br>
-        <input class="inputText" placeholder = "Enter Municipality" type="text" id ="municipality" name="municipality"><br><br>
+        <input class="inputText" placeholder="Enter Municipality" type="text" id="municipality" name="municipality"><br><br>
 
-        <div class = "button-container">
-        <button class="addButton" onclick="addConsumer()">Add</button>
-        <button class="updateButton" onclick = "updateData()">Update</button>
-        <button class="deleteButton" (click)="updateData()">Delete</button>
-        <script src = "admin-interface.page.ts" type = "module"></script>
+        <label class="username-left" for="username">Username</label><br>
+        <input class="inputText" placeholder="Enter Username" type="text" id="username" name="username"><br><br>
 
+        <label class="password-left" for="username">Password:</label><br>
+        <input class="inputText" placeholder="Enter Password" type="password" id="password" name="password"><br><br>
+
+        <div class="button-container">
+          <button class="addButton" onclick="addConsumer()">Add</button>
+          <button class="updateButton" onclick="updateData()">Update</button>
+          <button class="deleteButton" onclick="updateData()">Delete</button>
+          <script src="admin-interface.page.ts" type="module"></script>
+        </div>
       </div>
-    </div>
 
       <div class="column-right">
         <ion-img class="photo-about" src="assets/photo-about.jpg" alt="photo-about"></ion-img>
       </div>
     </div>
   </div>
-        <h1 class="info">Consumers Information</h1>
-        <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
-        <ion-list>
-          <ion-item *ngFor="let consumer of filteredConsumers" (click) = "populateFields(consumer)">
-            <ion-label class="entity">First Name:</ion-label>
-            <ion-label class="consumer-data" id = "firstName">{{ consumer.firstName }}</ion-label>
 
-            <ion-label class="entity">Last Name:</ion-label>
-            <ion-label class="consumer-data" id = "lastName">{{ consumer.lastName }}</ion-label>
+  <div>
+    <h1 class="info">Consumers Information</h1>
+    <input class = "search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
+    <div class = "table-container">
+    <table>
+      <tr>
+        <th class = "entity">First Name</th>
+        <th class = "entity">Last Name</th>
+        <th class = "entity">Account Number</th>
+        <th class = "entity">Area Number</th>
+        <th class = "entity">Municipality</th>
+        <th class = "entity">Username</th>
+        <th class = "entity">Password</th>
+      </tr>
+      <tr *ngFor="let consumer of filteredConsumers">
+        <td class = "consumer-data">{{ consumer.firstName }}</td>
+        <td class = "consumer-data">{{ consumer.lastName }}</td>
+        <td class = "consumer-data">{{ consumer.accountNumber }}</td>
+        <td class = "consumer-data">{{ consumer.areaNumber }}</td>
+        <td class = "consumer-data">{{ consumer.municipality }}</td>
+        <td class = "consumer-data">{{ consumer.username}}</td>
+        <td class = "consumer-data">{{ maskPassword(consumer.password) }}</td>
+      </tr>
+    </table>
+    </div>
+  </div>
 
-            <ion-label class="entity">Account Number:</ion-label>
-            <ion-label class="consumer-data" id = "accountNumber">{{ consumer.accountNumber }}</ion-label>
-
-            <ion-label class="entity">Area Number:</ion-label>
-            <ion-label class="consumer-data" id = "areaNumber">{{ consumer.areaNumber }}</ion-label>
-
-            <ion-label class="entity">Municipality:</ion-label>
-            <ion-label class="consumer-data" id = "municipality">{{ consumer.municipality }}</ion-label>
-          </ion-item>
-        </ion-list>
-    <br>
+  <br>
   <ion-button [routerLink]="['/superadmin-payment-module']" shape="round" expand="block" color="success">Payment Module</ion-button>
   <br>
 </ion-content>

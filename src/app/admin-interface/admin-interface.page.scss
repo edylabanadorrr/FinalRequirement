@@ -117,6 +117,11 @@
 }
 
 /* Consumer Info */
+.table-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
 
 .info {
     display: flex;
@@ -125,11 +130,18 @@
 }
 
 .entity {
+    font-weight: bold;
+    font-size: 20px;
+    justify-content: center;
+    padding: 8px;
+    margin-right: 10px;
     color: #E74C3C;
 }
 
 .consumer-data {
+    padding: 8px;
     color: #95A5A6;
+    text-align: center;
 }
 
 .entity-username {
@@ -148,6 +160,25 @@
     display: none;
 }
 
+/* Search */
+.search-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 400px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+  
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+  
+  
 @media (max-width: 767px) {
     .entity {
         display: none;

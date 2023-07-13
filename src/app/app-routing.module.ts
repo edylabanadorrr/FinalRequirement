@@ -58,7 +58,8 @@ const routes: Routes = [
   {
     path: 'superadmin-payment-module',
     loadChildren: () => import('./superadmin-payment-module/superadmin-payment-module.module').then( m => m.SuperadminPaymentModulePageModule)
-  },  {
+  },
+  {
     path: 'customer-service-manage',
     loadChildren: () => import('./customer-service-manage/customer-service-manage.module').then( m => m.CustomerServiceManagePageModule)
   },

@@ -9,38 +9,39 @@
 
 <!-- Registration Form -->
 <ion-content>
-  <form (ngSubmit)="submitForm(registerForm)" #registerForm="ngForm">
     <ion-item lines="full">
       <ion-label position="floating">First name</ion-label>
-      <ion-input type="text" ngModel name="firstName" required></ion-input>
+      <ion-input type="text" [(ngModel)] = "firstName" name="firstName" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Last name</ion-label>
-      <ion-input type="text" ngModel name="lastName" required ></ion-input>
+      <ion-input type="text" [(ngModel)] = "lastName" name="lastName" required ></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Account Number</ion-label>
-      <ion-input type="number" ngModel name="accountNumber" required></ion-input>
+      <ion-input type="number" [(ngModel)] = "accountNumber" name="accountNumber" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Area Number</ion-label>
+      <ion-input type="number" [(ngModel)] = "areaNumber" name="areaNumber" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Municipality</ion-label>
+      <ion-input type="text" [(ngModel)] = "municipality" name = "municipality" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Username</ion-label>
-      <ion-input type="text" ngModel name="username" required></ion-input>
+      <ion-input type="text" [(ngModel)] = "username" name="username" required></ion-input>
     </ion-item>
     <ion-item lines="full">
       <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" ngModel name="password" required></ion-input>
+      <ion-input type="password" [(ngModel)] = "password" name="password" required></ion-input>
     </ion-item>
-
-<!-- Shows the error when the user haven't inputted everything in the fields -->
-    <div class = "fill-fields" *ngIf="isFormSubmitted && registerForm.invalid">
-      <p>Please fill in all the required fields.</p>
-    </div>
 
 <!-- Button -->
     <ion-row>
       <ion-col>
-        <ion-button (click)="submitForm(registerForm)" shape = "round" color="danger" expand="block">Sign Up</ion-button>
+        <ion-button shape = "round" expand = "block" type = "submit" color = "danger" (click) = "submitForm()">Sign Up</ion-button>
       </ion-col>
     </ion-row>
-  </form>
 </ion-content>

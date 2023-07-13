@@ -1,7 +1,6 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -10,41 +9,34 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class RegistrationPage implements OnInit {
-  constructor(private router: Router, private http: HttpClient) {}
+  firstName: string;
+  lastName: string;
+  accountNumber: string;
+  areaNumber: string;
+  municipality: string;
+  username: string;
+  password: string;
 
+  constructor(private http: HttpClient, private router: Router) {}
+  submitForm() {
+    const formData = new FormData();
+    formData.append('firstName', this.firstName);
+    formData.append('lastName', this.lastName);
+    formData.append('accountNumber', this.accountNumber);
+    formData.append('areaNumber', this.areaNumber);
+    formData.append('municipality', this.municipality);
+    formData.append('username', this.username);
+    formData.append('password', this.password);
+
+    this.http.post('http://localhost/ionic/registration.php', formData)
+      .subscribe(response => {
+        console.log(response);
+        // Handle response or perform any necessary actions
+      });
+      setTimeout(() => {
+      this.router.navigate(['/consumer-interface']);
+  }, 300);
+}
   ngOnInit() {}
-
-  isFormSubmitted = false;
-
-  submitForm(registerForm: NgForm) {
-    if (registerForm.invalid) {
-      this.isFormSubmitted = true;
-      return;
-    }
-    else {
-      const { firstName, lastName, accountNumber, userName, password } = registerForm.value;
-    
-    const data = {
-      firstName,
-      lastName,
-      accountNumber,
-      userName,
-      password
-    };
-    this.http.post('http://localhost:8100/admin-interface', data)
-      .subscribe(
-        response => {
-          console.log('Data saved successfully!', response);
-          // Perform any additional actions after saving the data
-        },
-        
-        error => {
-          console.error('Error saving data:', error);
-          // Handle any errors that occur during data saving
-        }
-      );
-      
-      this.router.navigate(['/consumer-interface']); 
-  }
 }
-}
+
