@@ -18,6 +18,7 @@ export class RegistrationPage implements OnInit {
   password: string;
 
   constructor(private http: HttpClient, private router: Router) {}
+  
   submitForm() {
     const formData = new FormData();
     formData.append('firstName', this.firstName);

@@ -162,7 +162,7 @@
 
 /* Search */
 .search-input {
-    padding: 8px;
+    padding: 6px;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
@@ -180,9 +180,6 @@
   
   
 @media (max-width: 767px) {
-    .entity {
-        display: none;
-    }
     .photo-about
     {
         display: none;
