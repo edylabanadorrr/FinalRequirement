@@ -25,7 +25,7 @@ export class LoginPage {
   }
 
   loadUsers() {
-    this.http.get<{ credentials: Credential[] }>('assets/data/data.json').subscribe(
+    this.http.get<{ credentials: Credential[] }>('assets/data/credentials.json').subscribe(
       (data) => {
         this.credentials = data.credentials;
       },

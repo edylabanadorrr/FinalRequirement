@@ -29,12 +29,6 @@
         <label class="municipality-left" for="municipality">Municipality:</label><br>
         <input class="inputText" placeholder = "Enter Municipality" type="text" id ="municipality" name="municipality"><br><br>
 
-        <label class="username-left" for="username">Username:</label><br>
-        <input class="inputText" placeholder = "Enter Username" type="text" id="username" name="username"><br><br>
-
-        <label class="password-left" for="password">Password:</label><br>
-        <input class="inputText" placeholder = "Enter Password" shape = "round" type="password" id="password" name="password"><br><br>
-
         <div class = "button-container">
         <button class="addButton" onclick="addConsumer()">Add</button>
         <button class="updateButton" onclick = "updateData()">Update</button>
@@ -67,12 +61,6 @@
 
             <ion-label class="entity">Municipality:</ion-label>
             <ion-label class="consumer-data" id = "municipality">{{ consumer.municipality }}</ion-label>
-
-            <ion-label class="entity-username">Username:</ion-label>
-            <ion-label class="consumer-data-username" id = "username">{{ consumer.username }}</ion-label>
-
-            <ion-label class="entity-password">Password:</ion-label>
-            <ion-label class="consumer-data-password" id="password">{{ maskPassword(consumer.password) }}</ion-label>
           </ion-item>
         </ion-list>
     <br>

@@ -30,6 +30,7 @@ export class AdminInterfacePage implements OnInit {
   ngOnInit() {
     this.loadData();
   }
+  
   loadData() {
     this.http.get<{ consumers: Consumer[] }>('assets/data/super-admin-data.json').subscribe(
       (data) => {

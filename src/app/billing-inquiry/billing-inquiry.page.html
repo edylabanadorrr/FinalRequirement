@@ -8,12 +8,30 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header>
-    <h1>Batangas II Electric Cooperative, Inc</h1>
-    <div class = "bill-summary">
-    <label class="firstname-left" for="firstName">Full Name:</label><br>
-    <input class="inputText" type="text" id="fullName" name="fullName">
-</div>
-    <a href = "https://www.justpay.to/batelec">Payment Here:</a>
-  </ion-header>
+  <h1 class="cooperative-name">Batangas II Electric Cooperative, Inc</h1>
+  <ion-img class="photo-about" src="assets/photo-about.jpg" alt="photo-about"></ion-img>
+  <h1 class="info">Consumers Information</h1>
+  <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let accountdetail of filteredConsumers">
+      <ion-label class="entity">Full Name:</ion-label>
+      <ion-label class="consumer-data" id="fullName">{{ accountdetail.fullName }}</ion-label>
+
+      <ion-label class="entity">Account Number:</ion-label>
+      <ion-label class="consumer-data" id="accountNumber">{{ accountdetail.accountNumber }}</ion-label>
+
+      <ion-label class="entity">Area Number:</ion-label>
+      <ion-label class="consumer-data" id="areaNumber">{{ accountdetail.areaNumber }}</ion-label>
+
+      <ion-label class="entity">Municipality:</ion-label>
+      <ion-label class="consumer-data" id="municipality">{{ accountdetail.municipality }}</ion-label>
+
+      <ion-label class="entity">Current Bill:</ion-label>
+      <ion-label class="consumer-data" id="currentBilling">{{ accountdetail.currentBilling }}</ion-label>
+
+      <ion-label class="entity">Due Date:</ion-label>
+      <ion-label class="consumer-data" id="dueDate">{{ accountdetail.dueDate }}</ion-label>
+    </ion-item>
+  </ion-list>
+  <a href="https://www.justpay.to/batelec">Payment Here</a>
 </ion-content>

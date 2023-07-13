@@ -1,0 +1,12 @@
+{
+    "accountDetails": [
+        {
+            "fullName": "Edyl Abanador",
+            "accountNumber": 111,
+            "areaNumber": "2",
+            "municipality": "San Jose",
+            "currentBilling": "2,320.00",
+            "dueDate": "08-01-2023"
+        }
+    ]
+}
