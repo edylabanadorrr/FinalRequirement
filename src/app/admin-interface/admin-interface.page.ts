@@ -9,6 +9,8 @@ interface Consumer {
   firstName: string;
   lastName: string;
   accountNumber: string;
+  areaNumber: string;
+  municipality: string;
   username: string;
   password: string;
 }
@@ -46,6 +48,8 @@ export class AdminInterfacePage implements OnInit {
       firstName: '',
       lastName: '',
       accountNumber: '',
+      areaNumber: '',
+      municipality: '',
       username: '',
       password: ''
     };
@@ -66,12 +70,16 @@ export class AdminInterfacePage implements OnInit {
     const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
     const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
     const accountNumberInput = document.getElementById('accountNumber') as HTMLInputElement;
+    const areaNumberInput = document.getElementById('areaNumber') as HTMLInputElement;
+    const municipalityInput = document.getElementById('municipality') as HTMLInputElement;
     const usernameInput = document.getElementById('username') as HTMLInputElement;
     const passwordInput = document.getElementById('password') as HTMLInputElement;
 
     firstNameInput.value = consumer.firstName;
     lastNameInput.value = consumer.lastName;
     accountNumberInput.value = consumer.accountNumber;
+    areaNumberInput.value = consumer.areaNumber;
+    municipalityInput.value = consumer.municipality;
     usernameInput.value = consumer.username;
     passwordInput.value = consumer.password;
   }
@@ -84,6 +92,8 @@ export class AdminInterfacePage implements OnInit {
           consumer.firstName.toLowerCase().includes(lowerCaseSearchTerm) ||
           consumer.lastName.toLowerCase().includes(lowerCaseSearchTerm) ||
           consumer.accountNumber.toString().includes(searchTerm) ||
+          consumer.areaNumber.toString().includes(searchTerm) ||
+          consumer.municipality.toString().includes(searchTerm) ||
           consumer.username.toLowerCase().includes(lowerCaseSearchTerm) ||
           consumer.password.toLowerCase().includes(lowerCaseSearchTerm)
         );
@@ -101,12 +111,16 @@ export class AdminInterfacePage implements OnInit {
     const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
     const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
     const accountNumberInput = document.getElementById('accountNumber') as HTMLInputElement;
+    const areaNumberInput = document.getElementById('areaNumber') as HTMLInputElement;
+    const municipalityInput = document.getElementById('municipality') as HTMLInputElement;
     const usernameInput = document.getElementById('username') as HTMLInputElement;
     const passwordInput = document.getElementById('password') as HTMLInputElement;
 
     firstNameInput.value = '';
     lastNameInput.value = '';
     accountNumberInput.value = '';
+    areaNumberInput.value = '';
+    municipalityInput.value = '';
     usernameInput.value = '';
     passwordInput.value = '';
   }

@@ -5,6 +5,8 @@
     "firstName": "Edyl",
     "lastName": "Abanador",
     "accountNumber": 111,
+    "areaNumber": 2,
+    "municipality": "San Jose",
     "username": "edylabanador",
     "password": "abanador"
   },
@@ -12,6 +14,8 @@
     "firstName": "Rachel",
     "lastName": "Tamayo",
     "accountNumber": 112,
+    "areaNumber": 1,
+    "municipality": "Alitagtag",
     "username": "tammy",
     "password": "rachelanne"
   },
@@ -19,6 +23,8 @@
     "firstName": "Yujin",
     "lastName": "Choi",
     "accountNumber": 113,
+    "areaNumber": 3,
+    "municipality": "Tanauan",
     "username": "choiyujin",
     "password": "yujinbunny"
   },
@@ -26,6 +32,8 @@
     "firstName": "Ian",
     "lastName": "Gutierrez",
     "accountNumber": 114,
+    "areaNumber": 2,
+    "municipality": "Rosario",
     "username": "ian",
     "password": "gutierrez"
   },
@@ -33,6 +41,8 @@
     "firstName": "Aaron",
     "lastName": "Mendoza",
     "accountNumber": 115,
+    "areaNumber": 2,
+    "municipality": "Padre Garcia",
     "username": "aaron",
     "password": "mendoza"
   }

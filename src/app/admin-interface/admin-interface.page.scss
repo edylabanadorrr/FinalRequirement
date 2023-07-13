@@ -14,19 +14,26 @@
 /* Label and Input - Left side */
 
 .firstname-left {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .lastname-left {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .accountnumber-left {
-    font-size: 20px;
+    font-size: 15px;
 }
 
+.areanumber-left {
+    font-size: 15px;
+}
+
+.municipality-left {
+    font-size: 15px;
+}
 .username-left {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 .password-left {
@@ -34,8 +41,10 @@
 }
 
 .inputText {
-    font-size: 20px;
+    font-size: 15px;
+    width: 100%;
 }
+
 .container {
     display: grid;
     gap: 20px;
@@ -54,12 +63,35 @@
     justify-content: flex-start;
   }
   
-.addButton, .updateButton, .deleteButton {
+.addButton {
     margin-right: 10px;
     display: flex;
     padding: 10px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-  }
+}
+
+.updateButton {
+    margin-right: 10px;
+    display: flex;
+    padding: 10px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.deleteButton {
+    margin-right: 10px;
+    display: flex;
+    padding: 10px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
   
 /* Image */
 
@@ -98,6 +130,22 @@
 
 .consumer-data {
     color: #95A5A6;
+}
+
+.entity-username {
+    display: none;
+}
+
+.consumer-data-username {
+    display: none;
+}
+
+.entity-password {
+    display: none;
+}
+
+.consumer-data-password {
+    display: none;
 }
 
 @media (max-width: 767px) {

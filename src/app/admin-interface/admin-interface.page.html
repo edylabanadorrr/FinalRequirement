@@ -15,19 +15,25 @@
         <h3 class="heading">Click on a consumer to display its information.</h3>
         <br><br>
         <label class="firstname-left" for="firstName">First Name:</label><br>
-        <input class="inputText" placeholder = "Enter first name" type="text" id="firstName" name="firstName"><br><br>
+        <input class="inputText" placeholder = "Enter First name" type="text" id="firstName" name="firstName"><br><br>
 
         <label class="lastname-left" for="lastName">Last Name:</label><br>
-        <input class="inputText" placeholder = "Enter last name" type="text" id="lastName" name="lastName"><br><br>
+        <input class="inputText" placeholder = "Enter Last name" type="text" id="lastName" name="lastName"><br><br>
 
         <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
-        <input class="inputText" placeholder = "Enter account number" type="text" id ="accountNumber" name="accountNumber"><br><br>
+        <input class="inputText" placeholder = "Enter Account number" type="text" id ="accountNumber" name="accountNumber"><br><br>
+
+        <label class="areanumber-left" for="areaNumber">Area:</label><br>
+        <input class="inputText" placeholder = "Enter Area Number" type="number" id ="areaNumber" name="areaNumber"><br><br>
+
+        <label class="municipality-left" for="municipality">Municipality:</label><br>
+        <input class="inputText" placeholder = "Enter Municipality" type="text" id ="municipality" name="municipality"><br><br>
 
         <label class="username-left" for="username">Username:</label><br>
-        <input class="inputText" placeholder = "Enter username" type="text" id="username" name="username"><br><br>
+        <input class="inputText" placeholder = "Enter Username" type="text" id="username" name="username"><br><br>
 
         <label class="password-left" for="password">Password:</label><br>
-        <input class="inputText" placeholder = "Enter password" type="password" id="password" name="password"><br><br>
+        <input class="inputText" placeholder = "Enter Password" shape = "round" type="password" id="password" name="password"><br><br>
 
         <div class = "button-container">
         <button class="addButton" onclick="addConsumer()">Add</button>
@@ -56,11 +62,17 @@
             <ion-label class="entity">Account Number:</ion-label>
             <ion-label class="consumer-data" id = "accountNumber">{{ consumer.accountNumber }}</ion-label>
 
-            <ion-label class="entity">Username:</ion-label>
-            <ion-label class="consumer-data" id = "username">{{ consumer.username }}</ion-label>
+            <ion-label class="entity">Area Number:</ion-label>
+            <ion-label class="consumer-data" id = "areaNumber">{{ consumer.areaNumber }}</ion-label>
 
-            <ion-label class="entity">Password:</ion-label>
-            <ion-label class="consumer-data" id="password">{{ maskPassword(consumer.password) }}</ion-label>
+            <ion-label class="entity">Municipality:</ion-label>
+            <ion-label class="consumer-data" id = "municipality">{{ consumer.municipality }}</ion-label>
+
+            <ion-label class="entity-username">Username:</ion-label>
+            <ion-label class="consumer-data-username" id = "username">{{ consumer.username }}</ion-label>
+
+            <ion-label class="entity-password">Password:</ion-label>
+            <ion-label class="consumer-data-password" id="password">{{ maskPassword(consumer.password) }}</ion-label>
           </ion-item>
         </ion-list>
     <br>

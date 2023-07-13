@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Bill Summary</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,6 +10,10 @@
 <ion-content [fullscreen]="true">
   <ion-header>
     <h1>Batangas II Electric Cooperative, Inc</h1>
-    <div id = "billSummary"></div>
+    <div class = "bill-summary">
+    <label class="firstname-left" for="firstName">Full Name:</label><br>
+    <input class="inputText" type="text" id="fullName" name="fullName">
+</div>
+    <a href = "https://www.justpay.to/batelec">Payment Here:</a>
   </ion-header>
 </ion-content>

@@ -66,6 +66,10 @@ const routes: Routes = [
     path: 'billing-inquiry',
     loadChildren: () => import('./billing-inquiry/billing-inquiry.module').then( m => m.BillingInquiryPageModule)
   },
+  {
+    path: 'consumer-account-details',
+    loadChildren: () => import('./consumer-account-details/consumer-account-details.module').then( m => m.ConsumerAccountDetailsPageModule)
+  },
 
 
 ];
