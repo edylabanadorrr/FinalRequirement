@@ -86,45 +86,68 @@ export class AdminInterfacePage implements OnInit {
 
     
   submitForm() {
-    const formData = new FormData();
-    formData.append('firstName', this.firstName);
-    formData.append('lastName', this.lastName);
-    formData.append('accountNumber', this.accountNumber);
-    formData.append('areaNumber', this.areaNumber);
-    formData.append('municipality', this.municipality);
-    formData.append('username', this.username);
-    formData.append('password', this.password);
+    const data = {
+      firstName: this.firstName,
+      lastName: this.lastName,
+      accountNumber: this.accountNumber,
+      areaNumber: this.areaNumber,
+      municipality: this.municipality,
+      username: this.municipality,
+      password: this.password
+    };
 
-    this.http.post('http://localhost/ionic/registration.php', formData)
+    this.http.post('http://localhost/ionic/superadmin-add.php', data)
     .subscribe(response => {
       console.log(response);
       this.clearForm();
+      this.fetchConsumers();
       // Handle response or perform any necessary actions
     });
+    (error: any) => {
+      console.error(error); // Log the error message
+    }
 }
-updateConsumer() {
-  if (this.selectedConsumer !== null) {
-      const formData: Consumer = {
-        ConsumerID: this.selectedConsumer.ConsumerID,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        accountNumber: this.accountNumber,
-        areaNumber: this.areaNumber,
-        municipality: this.municipality,
-        username: this.username,
-        password: this.password
-    };
+  updateConsumer() {
+    if (this.selectedConsumer !== null) {
+        const formData: Consumer = {
+          ConsumerID: this.selectedConsumer.ConsumerID,
+          firstName: this.firstName,
+          lastName: this.lastName,
+          accountNumber: this.accountNumber,
+          areaNumber: this.areaNumber,
+          municipality: this.municipality,
+          username: this.username,
+          password: this.password
+      };
 
-    this.http.post('http://localhost/ionic/update.php', formData)
-    .subscribe(response => {
-      console.log(response); // Handle success scenario
-      // Reset selected customer and form fields
-      this.selectedConsumer = null;
-      this.clearForm();
-      this.fetchConsumers(); // Update the customer list after the update
-    });
+      this.http.post('http://localhost/ionic/superadmin-update.php', formData)
+      .subscribe(response => {
+        console.log(response); // Handle success scenario
+        // Reset selected customer and form fields
+        this.selectedConsumer = null;
+        this.clearForm();
+        this.fetchConsumers(); // Update the customer list after the update
+      });
+    }
+  }
+deleteConsumer() {
+  if (this.selectedConsumer !== null) {
+    const ConsumerID = this.selectedConsumer.ConsumerID;
+    const url = `http://localhost/ionic/superadmin-delete.php?ConsumerID=${ConsumerID}`;
+
+    this.http.delete(url).subscribe(
+      (response: any) => {
+        console.log(response); // Handle success scenario
+        this.selectedConsumer = null; // Reset selected customer
+        this.fetchConsumers(); // Update the customer list after the delete
+      },
+      (error: any) => {
+        console.error(error); // Log the error message
+      }
+    );
   }
 }
+
 
   // Password encryption
   maskPassword(password: string): string {
