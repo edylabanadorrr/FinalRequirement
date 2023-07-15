@@ -1,158 +1,46 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Welcome, Super Admin!</ion-title>
-  </ion-toolbar>
-</ion-header>
+<?php
+header("Access-Control-Allow-Origin: http://localhost:8100");
+header("Access-Control-Allow-Headers: Content-Type");
 
-<ion-content [fullscreen]="true">
-  <div class="container">
-    <div class="row">
-      <div class="column-left">
-        <h3 class="heading">Click on a plant to display its information.</h3>
-        <br><br>
-        <label class="firstname-left" for="firstName">First Name:</label><br>
-        <input class="inputText" type="text" id="firstName" name="firstName"><br><br>
+// Database connection details
+$host = 'localhost'; // Replace with your database hostname
+$user_name = 'root'; // Replace with your database username
+$pass_word = ''; // Replace with your database password
+$dbname = 'ionic-batelec'; // Replace with your database name
 
-        <label class="lastname-left" for="lastName">Last Name:</label><br>
-        <input class="inputText" type="text" id="lastName" name="lastName"><br><br>
+// Create a new PDO instance
+$conn = new PDO("mysql:host=$host;dbname=$dbname", $user_name, $pass_word);
 
-        <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
-        <input class="inputText" type="text" id="accountNumber" name="accountNumber"><br><br>
+// Retrieve form values
+$accountNumber = $_POST['accountNumber'];
+$password = $_POST['password'];
 
-        <label class="username-left" for="username">Username:</label><br>
-        <input class="inputText" type="text" id="username" name="username"><br><br>
+// Prepare and execute the SQL query
+$sql = "SELECT * FROM consumertable WHERE accountNumber = ? AND password = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$accountNumber, $password]);
 
-        <label class="password-left" for="password">Password:</label><br>
-        <input class="inputText" type="text" id="password" name="password"><br><br>
+// Check if a user with matching credentials exists
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($user) {
+  // User found, return success response
+  $response = [
+    'status' => 'success',
+    'message' => 'Login successful!',
+    'user' => $user
+  ];
+} else {
+  // User not found, return error response
+  $response = [
+    'status' => 'error',
+    'message' => 'Invalid email or password.'
+  ];
+}
 
-        <button class="saveButton" onclick="updateConsumerData()">Save</button>
-      </div>
+// Close the database connection
+$conn = null;
 
-      <div class="column-right">
-        <ion-img class="photo-about" src="assets/photo-about.jpg" alt="photo-about"></ion-img>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    var xmlDoc;
-    var selectedRow;
-
-    function loadConsumerData() {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          xmlDoc = this.responseXML;
-          displayConsumerData();
-        }
-      };
-      xhttp.open("GET", "src/assets/super_admin_data.xml", true);
-      xhttp.send();
-    }
-
-    function displayConsumerData() {
-      var table = document.getElementById('consumerTable');
-      var consumers = xmlDoc.getElementsByTagName("consumer");
-
-      for (var i = 0; i < consumers.length; i++) {
-        var firstName = consumers[i].getElementsByTagName("firstName")[0].childNodes[0].nodeValue;
-        var lastName= consumers[i].getElementsByTagName("lastName")[0].childNodes[0].nodeValue;
-        var accountNumber = consumers[i].getElementsByTagName("accountNumber")[0].childNodes[0].nodeValue;
-        var username = consumers[i].getElementsByTagName("username")[0].childNodes[0].nodeValue;
-        var password = consumers[i].getElementsByTagName("password")[0].childNodes[0].nodeValue;
-
-        var row = table.insertRow(table.rows.length);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-
-        cell1.innerHTML = firstName;
-        cell2.innerHTML = lastName;
-        cell3.innerHTML = accountNumber;
-        cell4.innerHTML = username;
-        cell5.innerHTML = password;
-
-        row.onclick = function() {
-          selectConsumerData(this);
-        };
-      }
-    }
-
-    function selectConsumerData(row) {
-      if (selectedRow) {
-        selectedRow.classList.remove('selected');
-      }
-      row.classList.add('selected');
-      selectedRow = row;
-
-      var firstName = row.cells[0].innerHTML;
-      var lastName = row.cells[1].innerHTML;
-      var accountNumber = row.cells[2].innerHTML;
-      var username = row.cells[3].innerHTML;
-      var password = row.cells[4].innerHTML;
-
-      document.getElementById('firstName').value = firstName;
-      document.getElementById('lastName').value = lastName;
-      document.getElementById('accountNumber').value = accountNumber;
-      document.getElementById('username').value = username;
-      document.getElementById('password').value = password;
-    }
-
-    function updateConsumerData() {
-      if (!selectedRow) {
-        alert('Please select a consumer from the table.');
-        return;
-      }
-
-      var firstName = document.getElementById('firstName').value;
-      var lastName = document.getElementById('lastName').value;
-      var accountNumber = document.getElementById('accountNumber').value;
-      var username = document.getElementById('username').value;
-      var password = document.getElementById('password').value;
-
-      selectedRow.cells[0].innerHTML = firstName;
-      selectedRow.cells[1].innerHTML = lastName;
-      selectedRow.cells[2].innerHTML = accountNumber;
-      selectedRow.cells[3].innerHTML = username;
-      selectedRow.cells[4].innerHTML = password;
-
-      clearForm();
-    }
-
-    function clearForm() {
-      document.getElementById('firstName').value = "";
-      document.getElementById('lastName').value = "";
-      document.getElementById('accountNumber').value = "";
-      document.getElementById('username').value = "";
-      document.getElementById('password').value = "";
-
-      if (selectedRow) {
-        selectedRow.classList.remove('selected');
-        selectedRow = null;
-      }
-    }
-
-    document.addEventListener("DOMContentLoaded", function() {
-      loadConsumerData();
-    });
-  </script>
-
-<table class = "consumerData" id="consumerTable">
-<tr class = "consumers">
-  <th>First Name</th>
-  <th>Last Name</th>
-  <th>Account Number</th>
-  <th>Username</th>
-  <th>Password</th>
-</tr>
-</table>
-  <ion-button [routerLink]="['/superadmin-payment-module']" shape="round" expand="block" color="success">
-    Payment Module
-  </ion-button>
-  <br>
-</ion-content>
+// Send the response as JSON
+header('Content-Type: application/json');
+echo json_encode($response);
+?>
