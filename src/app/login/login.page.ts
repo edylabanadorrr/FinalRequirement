@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { AlertController } from '@ionic/angular';
 interface Credential {
-  accountNumber: number;
+  accountNumber: string;
   password: string;
 }
 
@@ -13,12 +13,12 @@ interface Credential {
   styleUrls: ['./login.page.scss']
 })
 export class LoginPage {
-  accountNumber: number;
+  accountNumber: string;
   password: string;
   errorMessage: string;
   credentials: Credential[];
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private alertController: AlertController) {}
 
   ngOnInit() {
     this.loadUsers();
@@ -36,36 +36,55 @@ export class LoginPage {
   }
 
   submitLogin(loginForm: any) {
-    const matchedUser = this.credentials.find(credentials => credentials.accountNumber === this.accountNumber && credentials.password === this.password);
+    const formData = new FormData();
 
-    if (matchedUser) {
-      console.log('Login successful');
-      setTimeout(() => {
-      this.router.navigate(['/consumer-interface']);
-    }, 300);
-  }
-    else if (this.accountNumber === 1111 && this.password === "admin") {
-      console.log('Login successful');
-      setTimeout(() => {
-      this.router.navigate(['/admin-interface']);
-    }, 300);
-  }
-    else if (this.accountNumber === 2222 && this.password === "cashier") {
-      console.log('Login successful');
-      setTimeout(() => {
-      this.router.navigate(['/cashier']);
-    }, 300);
-  }
-    else if (this.accountNumber === 3333 && this.password === "cservice") {
-      console.log('Login successful');
-      setTimeout(() => {
-      this.router.navigate(['/customer-service']);
-    }, 300);
-  }
-    else {
-    console.log('Invalid credentials');
-    // Display an error message or perform other actions for invalid credentials
-    this.errorMessage = 'Invalid credentials';
+    formData.append('accountNumber', this.accountNumber);
+    formData.append('password', this.password);
+    
+    this.http.post('http://localhost/ionic/login.php', formData)
+    .subscribe((response: any) => {
+      console.log(response);
+      if (response.status === 'success') {
+        setTimeout(() => {
+        this.router.navigate(['/consumer-interface']);
+      }, 300);
     }
+        this.http.post('http://localhost/ionic/login-admin.php', formData)
+        .subscribe((response: any) => {
+          console.log(response);
+          if (response.status === 'success') {
+            setTimeout(() => {
+            this.router.navigate(['/admin-interface']);
+          }, 300);
+        }
+    });
+        this.http.post('http://localhost/ionic/login-cashier.php', formData)
+        .subscribe((response: any) => {
+          console.log(response);
+          if (response.status === 'success') {
+            setTimeout(() => {
+            this.router.navigate(['/cashier']);
+          }, 300);
+        }
+    });
+        this.http.post('http://localhost/ionic/login-cservice.php', formData)
+        .subscribe((response: any) => {
+          console.log(response);
+          if (response.status === 'success') {
+            setTimeout(() => {
+            this.router.navigate(['/customer-service']);
+          }, 300);
+        }
+      });
+    })
+  }
+  async presentAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Login',
+      message: message,
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 }
