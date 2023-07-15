@@ -7,9 +7,12 @@ import { Observable } from 'rxjs';
 })
 
 export class Consumer {
+  ConsumerID: number;
   firstName: string;
   lastName: string;
-  accountNumber: number;
+  accountNumber: string;
+  areaNumber: string;
+  municipality: string;
   username: string;
   password: string;
 
@@ -21,9 +24,12 @@ export class ConsumerService {
   }
 
 export interface ConsumerData {
+  ConsumerID: number;
   firstName: string;
   lastName: string;
   accountNumber: number;
+  areaNumber: number;
+  municipality: string;
   username: string;
   password: string;
 }

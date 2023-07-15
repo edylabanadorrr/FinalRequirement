@@ -1,0 +1,38 @@
+<?php
+
+header("Access-Control-Allow-Origin: *"); // Update with specific allowed origins if needed
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+$host = 'localhost';
+$user_name = 'root';
+$pass_word = '';
+$database = 'ionic-batelec';
+
+$conn = mysqli_connect($host, $user_name, $pass_word, $database);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+$query = "SELECT * FROM consumertable WHERE ConsumerID = ?";
+$result = mysqli_query($conn, $query);
+
+$data = [];
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $data[] = $row;
+    }
+}
+
+mysqli_close($conn);
+
+header('Content-Type: application/json');
+echo json_encode($data);
+?>

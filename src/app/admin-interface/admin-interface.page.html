@@ -15,30 +15,30 @@
         <h3 class="heading">Click on a consumer to display its information.</h3>
         <br><br>
         <label class="firstname-left" for="firstName">First Name:</label><br>
-        <input class="inputText" placeholder="Enter First name" type="text" [(ngModel)] = "firstName" id = "firstName" name="firstName"><br><br>
+        <input class="inputText" placeholder="Enter First name" type="text" id = "firstName" name="firstName" [(ngModel)] = "firstName"><br><br>
 
         <label class="lastname-left" for="lastName">Last Name:</label><br>
-        <input class="inputText" placeholder="Enter Last name" type="text" [(ngModel)] = "lastName" id = "lastName" name="lastName"><br><br>
+        <input class="inputText" placeholder="Enter Last name" type="text" id = "lastName" name="lastName" [(ngModel)] = "lastName"><br><br>
 
         <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
-        <input class="inputText" placeholder="Enter Account number" type="text" [(ngModel)] = "accountNumber" id = "accountNumber" name="accountNumber"><br><br>
+        <input class="inputText" placeholder="Enter Account number" type="number" id = "accountNumber" name="accountNumber" [(ngModel)] = "accountNumber"><br><br>
 
         <label class="areanumber-left" for="areaNumber">Area Number:</label><br>
-        <input class="inputText" placeholder="Enter Area Number" type="number" [(ngModel)] = "areaNumber" id = "areaNumber" name="areaNumber"><br><br>
+        <input class="inputText" placeholder="Enter Area Number" type="number" id = "areaNumber" name="areaNumber" [(ngModel)] = "areaNumber"><br><br>
 
         <label class="municipality-left" for="municipality">Municipality:</label><br>
-        <input class="inputText" placeholder="Enter Municipality" type="text" [(ngModel)] = "municipality" id = "municipality" name="municipality"><br><br>
+        <input class="inputText" placeholder="Enter Municipality" type="text" id = "municipality" name="municipality" [(ngModel)] = "municipality"><br><br>
 
         <label class="username-left" for="username">Username</label><br>
-        <input class="inputText" placeholder="Enter Username" type="text" [(ngModel)] = "username" id = "username" name="username"><br><br>
+        <input class="inputText" placeholder="Enter Username" type="text" id = "username" name="username" [(ngModel)] = "username"><br><br>
 
         <label class="password-left" for="password">Password:</label><br>
-        <input class="inputText" placeholder="Enter Password" type="password" [(ngModel)] = "password" id = "password" name="password"><br><br>
+        <input class="inputText" placeholder="Enter Password" type="password" id = "password" name="password" [(ngModel)] = "password"><br><br>
 
         <div class="button-container">
           <button class="addButton" type = "submit" (click)="submitForm()">Add</button>
-          <button class="updateButton" (click) = "updateConsumer()">Update</button>
-          <button class="deleteButton" onclick="updateData()">Delete</button>
+          <button class="updateButton" (click)="updateConsumer()" *ngIf="selectedConsumer !== null">Update</button>
+          <button class="deleteButton" (click) = "updateConsumer()">Delete</button>
           <button class="clearButton" (click) = "clearForm()">Clear</button>
           <script src="admin-interface.page.ts" type="module"></script>
         </div>

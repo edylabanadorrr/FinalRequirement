@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ConsumerService } from '../consumer.service';
+import { NgForm } from '@angular/forms';
+import { RegistrationComponent } from '../registration/registration.component';
 
 interface Consumer {
-  id: number;
+  ConsumerID: string;
   firstName: string;
   lastName: string;
   accountNumber: string;
@@ -19,6 +22,7 @@ interface Consumer {
 })
 
 export class AdminInterfacePage implements OnInit {
+  ConsumerID: number;
   firstName: string;
   lastName: string;
   accountNumber: string;
@@ -28,9 +32,29 @@ export class AdminInterfacePage implements OnInit {
   password: string;
   consumers: Consumer[] = [];
   searchText: string = '';
-  selectedConsumer: Consumer;
+  selectedConsumer: Consumer | null = null;
 
-  constructor(private http: HttpClient) {}
+  formData: Consumer = {
+    ConsumerID: '',
+    firstName: '',
+    lastName: '',
+    accountNumber: '',
+    areaNumber: '',
+    municipality: '',
+    username: '',
+    password: '',
+  };
+
+  constructor(private http: HttpClient) {
+    this.ConsumerID = 0;
+    this.firstName = '';
+    this.lastName = '';
+    this.accountNumber = '';
+    this.areaNumber = '';
+    this.municipality = '';
+    this.username = '';
+    this.password = '';
+  }
 
   ngOnInit() {
     this.fetchConsumers();
@@ -48,12 +72,19 @@ export class AdminInterfacePage implements OnInit {
     }
     );
   }
-  
-  // Password encryption
-  maskPassword(password: string): string {
-    return '*'.repeat(password.length);
-  }
+    // Fetch data in input fields 
+  populateFields(consumer: Consumer) {
+    this.selectedConsumer = consumer;
+    this.firstName = consumer.firstName;
+    this.lastName = consumer.lastName;
+    this.accountNumber = consumer.accountNumber;
+    this.areaNumber = consumer.areaNumber;
+    this.municipality = consumer.municipality;
+    this.username = consumer.username;
+    this.password = consumer.password;
+    }
 
+    
   submitForm() {
     const formData = new FormData();
     formData.append('firstName', this.firstName);
@@ -65,46 +96,39 @@ export class AdminInterfacePage implements OnInit {
     formData.append('password', this.password);
 
     this.http.post('http://localhost/ionic/registration.php', formData)
-      .subscribe(response => {
-        console.log(response);
-        // Handle response or perform any necessary actions
-      });
+    .subscribe(response => {
+      console.log(response);
+      this.clearForm();
+      // Handle response or perform any necessary actions
+    });
+}
+updateConsumer() {
+  if (this.selectedConsumer !== null) {
+      const formData: Consumer = {
+        ConsumerID: this.selectedConsumer.ConsumerID,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        accountNumber: this.accountNumber,
+        areaNumber: this.areaNumber,
+        municipality: this.municipality,
+        username: this.username,
+        password: this.password
+    };
+
+    this.http.post('http://localhost/ionic/update.php', formData)
+    .subscribe(response => {
+      console.log(response); // Handle success scenario
+      // Reset selected customer and form fields
+      this.selectedConsumer = null;
+      this.clearForm();
+      this.fetchConsumers(); // Update the customer list after the update
+    });
+  }
 }
 
-updateConsumer() {
-      const inputData = new FormData();
-      inputData.append('firstName', this.firstName);
-      inputData.append('lastName', this.lastName);
-      inputData.append('accountNumber', this.accountNumber);
-      inputData.append('areaNumber', this.areaNumber);
-      inputData.append('municipality', this.municipality);
-      inputData.append('username', this.username);
-      inputData.append('password', this.password);
-
-      this.http.post('http://localhost/ionic/update.php', inputData)
-        .subscribe(response => {
-          console.log(response);
-          // Handle response or perform any necessary actions
-        });
-        this.clearForm();
-    }
-  // Fetch data in input fields 
-populateFields(consumer: any) {
-    const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
-    const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
-    const accountNumberInput = document.getElementById('accountNumber') as HTMLInputElement;
-    const areaNumberInput = document.getElementById('areaNumber') as HTMLInputElement;
-    const municipalityInput = document.getElementById('municipality') as HTMLInputElement;
-    const usernameInput = document.getElementById('username') as HTMLInputElement;
-    const passwordInput = document.getElementById('password') as HTMLInputElement;
-
-    firstNameInput.value = consumer.firstName;
-    lastNameInput.value = consumer.lastName;
-    accountNumberInput.value = consumer.accountNumber;
-    areaNumberInput.value = consumer.areaNumber;
-    municipalityInput.value = consumer.municipality;
-    usernameInput.value = consumer.username;
-    passwordInput.value = consumer.password;
+  // Password encryption
+  maskPassword(password: string): string {
+    return '*'.repeat(password.length);
   }
 
   // Clear Function

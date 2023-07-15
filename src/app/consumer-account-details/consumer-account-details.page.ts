@@ -37,12 +37,13 @@ export class ConsumerAccountDetailsPage implements OnInit {
     fetchConsumerDetails() {
       this.http.get<any>('http://localhost/ionic/consumer-details.php').subscribe(
         (data) => {
-        this.consumers = data;
-        console.log(this.consumers);
-      },
-      (error) => {
-        console.error('Error fetching consumer data:', error);
-      }
+          console.log(data); // Log the response data
+          this.consumers = data;
+          console.log(this.consumers);
+        },
+        (error) => {
+          console.error('Error fetching consumer data:', error);
+        }
       );
     }
     updateConsumer() {
