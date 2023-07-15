@@ -32,13 +32,14 @@
         <label class="username-left" for="username">Username</label><br>
         <input class="inputText" placeholder="Enter Username" type="text" [(ngModel)] = "username" id = "username" name="username"><br><br>
 
-        <label class="password-left" for="username">Password:</label><br>
+        <label class="password-left" for="password">Password:</label><br>
         <input class="inputText" placeholder="Enter Password" type="password" [(ngModel)] = "password" id = "password" name="password"><br><br>
 
         <div class="button-container">
           <button class="addButton" type = "submit" (click)="submitForm()">Add</button>
-          <button class="updateButton" onclick="updateData()">Update</button>
+          <button class="updateButton" (click) = "updateConsumer()">Update</button>
           <button class="deleteButton" onclick="updateData()">Delete</button>
+          <button class="clearButton" (click) = "clearForm()">Clear</button>
           <script src="admin-interface.page.ts" type="module"></script>
         </div>
       </div>

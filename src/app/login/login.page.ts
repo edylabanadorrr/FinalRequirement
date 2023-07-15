@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 interface Credential {
-  username: string;
+  accountNumber: number;
   password: string;
 }
 
@@ -13,7 +13,7 @@ interface Credential {
   styleUrls: ['./login.page.scss']
 })
 export class LoginPage {
-  username: string;
+  accountNumber: number;
   password: string;
   errorMessage: string;
   credentials: Credential[];
@@ -36,7 +36,7 @@ export class LoginPage {
   }
 
   submitLogin(loginForm: any) {
-    const matchedUser = this.credentials.find(credentials => credentials.username === this.username && credentials.password === this.password);
+    const matchedUser = this.credentials.find(credentials => credentials.accountNumber === this.accountNumber && credentials.password === this.password);
 
     if (matchedUser) {
       console.log('Login successful');
@@ -44,19 +44,19 @@ export class LoginPage {
       this.router.navigate(['/consumer-interface']);
     }, 300);
   }
-    else if (this.username === "1111" && this.password === "admin") {
+    else if (this.accountNumber === 1111 && this.password === "admin") {
       console.log('Login successful');
       setTimeout(() => {
       this.router.navigate(['/admin-interface']);
     }, 300);
   }
-    else if (this.username === "2222" && this.password === "cashier") {
+    else if (this.accountNumber === 2222 && this.password === "cashier") {
       console.log('Login successful');
       setTimeout(() => {
       this.router.navigate(['/cashier']);
     }, 300);
   }
-    else if (this.username === "3333" && this.password === "cservice") {
+    else if (this.accountNumber === 3333 && this.password === "cservice") {
       console.log('Login successful');
       setTimeout(() => {
       this.router.navigate(['/customer-service']);

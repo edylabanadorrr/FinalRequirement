@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from '../registration/registration.component';
+import { ReadVarExpr } from '@angular/compiler';
 
 interface Consumer {
+  id: number;
   firstName: string;
   lastName: string;
   accountNumber: string;
@@ -28,12 +30,14 @@ export class AdminInterfacePage implements OnInit {
   password: string;
   consumers: Consumer[] = [];
   searchText: string = '';
+  selectedConsumer: Consumer;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.fetchConsumers();
   }
+
   // Fetch Data from database
   fetchConsumers() {
     this.http.get<any>('http://localhost/ionic/fetch.php').subscribe(
@@ -46,10 +50,12 @@ export class AdminInterfacePage implements OnInit {
     }
     );
   }
+  
   // Password encryption
   maskPassword(password: string): string {
     return '*'.repeat(password.length);
   }
+
   submitForm() {
     const formData = new FormData();
     formData.append('firstName', this.firstName);
@@ -66,8 +72,26 @@ export class AdminInterfacePage implements OnInit {
         // Handle response or perform any necessary actions
       });
 }
+
+updateConsumer() {
+      const inputData = new FormData();
+      inputData.append('firstName', this.firstName);
+      inputData.append('lastName', this.lastName);
+      inputData.append('accountNumber', this.accountNumber);
+      inputData.append('areaNumber', this.areaNumber);
+      inputData.append('municipality', this.municipality);
+      inputData.append('username', this.username);
+      inputData.append('password', this.password);
+
+      this.http.post('http://localhost/ionic/update.php', inputData)
+        .subscribe(response => {
+          console.log(response);
+          // Handle response or perform any necessary actions
+        });
+        this.clearForm();
+    }
   // Fetch data in input fields 
-  populateFields(consumer: any) {
+populateFields(consumer: any) {
     const firstNameInput = document.getElementById('firstName') as HTMLInputElement;
     const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
     const accountNumberInput = document.getElementById('accountNumber') as HTMLInputElement;
@@ -85,6 +109,17 @@ export class AdminInterfacePage implements OnInit {
     passwordInput.value = consumer.password;
   }
 
+  // Clear Function
+  clearForm() {
+    this.firstName = '';
+    this.lastName = '';
+    this.accountNumber = '';
+    this.areaNumber = '';
+    this.municipality = '';
+    this.username = '';
+    this.password = '';
+  }
+  
   // Search Function
   get filteredConsumers(): Consumer[] {
     return this.consumers.filter(consumer => {

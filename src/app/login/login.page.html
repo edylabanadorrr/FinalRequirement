@@ -10,7 +10,7 @@
   <form (ngSubmit)="submitLogin(loginForm)" #loginForm="ngForm">
     <ion-item lines="full">
       <ion-label position="floating">Account Number</ion-label>
-      <ion-input type="text" name="username" [(ngModel)]="username" required></ion-input>
+      <ion-input type="number" name="accountNumber" [(ngModel)]="accountNumber" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
