@@ -12,7 +12,9 @@
     justify-content: center;
 }
 /* Label and Input - Left side */
-
+.heading {
+    font-size: 50px;
+}
 .firstname-left {
     font-size: 15px;
 }
@@ -94,7 +96,7 @@
     margin-left: 20px;
 }
 
-.photo-about {
+.photo-accountdetails {
     display: flex;
     align-items: center;
     justify-content: center;

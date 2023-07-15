@@ -21,7 +21,7 @@
             <input class="inputText" placeholder="Enter Last name" type="text" [(ngModel)] = "lastName" id = "lastName" name="lastName"><br><br>
     
             <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
-            <input class="inputText" placeholder="Enter Account number" type="text" [(ngModel)] = "accountNumber" id = "accountNumber" name="accountNumber"><br><br>
+            <input class="inputText" placeholder="Enter Account number" type="number" [(ngModel)] = "accountNumber" id = "accountNumber" name="accountNumber"><br><br>
     
             <label class="areanumber-left" for="areaNumber">Area Number:</label><br>
             <input class="inputText" placeholder="Enter Area Number" type="number" [(ngModel)] = "areaNumber" id = "areaNumber" name="areaNumber"><br><br>
@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="column-right">
-            <ion-img class="photo-about" src="assets/photo-about.jpg" alt="photo-about"></ion-img>
+            <ion-img class="photo-accountdetails" src="assets/photo-accountdetails.jpg" alt="photo-accountdetails"></ion-img>
           </div>
         </div>
 
@@ -67,6 +67,6 @@
               <td class = "consumer-data">{{ consumer.areaNumber }}</td>
               <td class = "consumer-data">{{ consumer.municipality }}</td>
               <td class = "consumer-data">{{ consumer.username}}</td>
-              <td class = "consumer-data">{{ maskPassword(consumer.password) }}</td>
+              <td class = "consumer-data">{{ consumer.password }}</td>
             </tr>
           </table>

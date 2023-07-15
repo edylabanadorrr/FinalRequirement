@@ -4,7 +4,7 @@ interface Consumer {
   id: number;
   firstName: string;
   lastName: string;
-  accountNumber: string;
+  accountNumber: number;
   areaNumber: string;
   municipality: string;
   username: string; 
@@ -19,7 +19,7 @@ interface Consumer {
 export class ConsumerAccountDetailsPage implements OnInit {
   firstName: string;
   lastName: string;
-  accountNumber: string;
+  accountNumber: number;
   areaNumber: string;
   municipality: string;
   username: string;
@@ -31,34 +31,25 @@ export class ConsumerAccountDetailsPage implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.getAccountDetails();
+    this.fetchConsumerDetails();
   }
     // Fetch Data from database
-    getAccountDetails() {
-      this.http.get<any>('http://localhost/ionic/consumer-account-details.php').subscribe(
-        (response) => {
-          // Extract the account details from the response
-          const { firstName, lastName, accountNumber, areaNumber, municipality, username, password } = response;
-  
-          // Assign the retrieved account details to the component variables
-          this.firstName = firstName;
-          this.lastName = lastName;
-          this.accountNumber = accountNumber;
-          this.areaNumber = areaNumber;
-          this.municipality = municipality;
-          this.username = username;
-          this.password = password;
-        },
-        (error) => {
-          console.error('Error fetching account details:', error);
-        }
+    fetchConsumerDetails() {
+      this.http.get<any>('http://localhost/ionic/consumer-details.php').subscribe(
+        (data) => {
+        this.consumers = data;
+        console.log(this.consumers);
+      },
+      (error) => {
+        console.error('Error fetching consumer data:', error);
+      }
       );
     }
     updateConsumer() {
       const inputData = new FormData();
       inputData.append('firstName', this.firstName);
       inputData.append('lastName', this.lastName);
-      inputData.append('accountNumber', this.accountNumber);
+      inputData.append('accountNumber', Number (this.accountNumber).toString());
       inputData.append('areaNumber', this.areaNumber);
       inputData.append('municipality', this.municipality);
       inputData.append('username', this.username);
@@ -90,21 +81,22 @@ export class ConsumerAccountDetailsPage implements OnInit {
         passwordInput.value = consumer.password;
       }
       // Clear Function
-  clearForm() {
-    this.firstName = '';
-    this.lastName = '';
-    this.accountNumber = '';
-    this.areaNumber = '';
-    this.municipality = '';
-    this.username = '';
-    this.password = '';
-  }
+      clearForm() {
+        this.firstName = '';
+        this.lastName = '';
+        this.accountNumber = 0;
+        this.areaNumber = '';
+        this.municipality = '';
+        this.username = '';
+        this.password = '';
+      }
+      
     // Search Function
     get filteredConsumers(): Consumer[] {
       return this.consumers.filter(consumer => {
         const fullName = consumer.firstName + ' ' + consumer.lastName;
         return fullName.toLowerCase().includes(this.searchText.toLowerCase()) ||
-          consumer.accountNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
+          consumer.accountNumber.toString().toLowerCase().includes(this.searchText.toLowerCase()) ||
           consumer.areaNumber.toLowerCase().includes(this.searchText.toLowerCase()) ||
           consumer.municipality.toLowerCase().includes(this.searchText.toLowerCase()) ||
           consumer.username.toLowerCase().includes(this.searchText.toLowerCase()) ||

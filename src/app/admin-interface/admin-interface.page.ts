@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { RegistrationComponent } from '../registration/registration.component';
-import { ReadVarExpr } from '@angular/compiler';
 
 interface Consumer {
   id: number;
