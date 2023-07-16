@@ -5,24 +5,24 @@ A final project to be complied for courses IT 331 - Application Development and 
 The project is for consumers of BATELEC II and departments such as Cashier and Customer Service, and a full access for the Super Admin.
 Relative to this, it features viewing bill information and managing account informations.
 
-#Consumers - 
+Consumers - 
 The system gives consumers access to their account information which they can update, and bill information, such as bill amounts and due dates.
 
-#Super Admin -
+Super Admin -
 The system gives access to the super admin with corresponding login credentials that has an access to manage consumer details and payment module.
 
-#Cashier -
+Cashier -
 The system gives access to the cashier with their corresponding login credentials that has an access to payment module.
 
-#Customer Service - 
+Customer Service - 
 The systems gives access to the customer service with their corresponding login credentials that has an access to manage consumer details.
 
-#Technologies Used
+Technologies Used:
 1. Frontend: HTML, CSS, Typescript, and Angular
 2. Backend - PHP
 3. Database - mySQL
 
-#Contacts
+Contacts: 
 abanadoredylbert@gmail.com |
 ianmark425@gmail.com |
 20-03815@g.batstate-u.edu.ph
