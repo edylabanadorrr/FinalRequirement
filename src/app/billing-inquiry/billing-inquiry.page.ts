@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-interface accountDetails {
-  fullName: string;
-  accountNumber: number;
-  areaNumber: number;
-  municipality: string;
-  currentBilling: number;
-  dueDate: Date;
+interface billSummary {
+  billSummaryID: string;
+  firstName: string;
+  lastName: string;
+  accountNumber: string;
+  currentBill: string;
+  dueDate: string;
+  status: string;
 }
 @Component({
   selector: 'app-billing-inquiry',
@@ -18,51 +19,59 @@ interface accountDetails {
 
 
 export class BillingInquiryPage implements OnInit {
-  fullName: string;
-  accountNumber: number;
-  areaNumber: number;
-  municipality: string;
-  currentBilling: number;
-  dueDate: Date;
-  accountDetails: accountDetails[];
-  filteredConsumers: accountDetails[];
+  billSummaryID: number;
+  firstName: string;
+  lastName: string;
+  accountNumber: string;
+  currentBill: string;
+  dueDate: string;
+  status: string;
+  billSummary: billSummary[] = [];
+  searchText: string;
+  selectedConsumer: billSummary | null = null;
 
-  constructor(private http: HttpClient, private router: Router) { }
-
-  ngOnInit() {
-    this.loadAccountDetails();
+  constructor(private http: HttpClient, private router: Router) { 
+    this.billSummaryID = 0;
+    this.firstName = '';
+    this.lastName = '';
+    this.accountNumber = '';
+    this.currentBill = '';
+    this.dueDate = '';
+    this.status = '';
   }
 
-  loadAccountDetails() {
-    this.http.get<{ accountDetails: accountDetails[] }>('assets/data/account-details.json').subscribe(
+  ngOnInit() {
+    this.loadBillSummary();
+  }
+
+  loadBillSummary() {
+    this.http.get< any >('http://localhost/ionic/billsummary.php').subscribe(
       (data) => {
-        this.accountDetails = data.accountDetails;
-        this.filteredConsumers = this.accountDetails;
-        console.log(this.accountDetails);
+        this.billSummary = data;
+        console.log(this.billSummary);
       },
       (error) => {
         console.error('Error fetching user data:', error);
       }
     );
   }
-  searchItems(searchTerm: string) {
-    if (searchTerm && searchTerm.trim() !== '') {
-      this.filteredConsumers = this.accountDetails.filter((accountDetail) => {
-        const lowerCaseSearchTerm = searchTerm.toLowerCase();
-        return (
-          accountDetail.fullName.toLowerCase().includes(lowerCaseSearchTerm) ||
-          accountDetail.accountNumber.toString().includes(searchTerm) ||
-          accountDetail.areaNumber.toString().includes(searchTerm) ||
-          accountDetail.municipality.toLowerCase().includes(lowerCaseSearchTerm) ||
-          accountDetail.currentBilling.toString().includes(searchTerm) ||
-          accountDetail.dueDate.toString().includes(searchTerm)
-        );
-      });
-    } else {
-      this.filteredConsumers = this.accountDetails;
-    }
-  }
-  
+// Search Function
+get filteredConsumers(): billSummary[] {
+  return this.billSummary.filter(billSummary => {
+    const fullName = (billSummary.firstName + ' ' + billSummary.lastName).toLowerCase();
+    const accountNumber = billSummary.accountNumber?.toString().toLowerCase();
+    const currentBill = billSummary.currentBill?.toLowerCase();
+    const dueDate = billSummary.dueDate?.toLowerCase();
+    const status = billSummary.status?.toLowerCase();
+
+    return fullName.includes(this.searchText?.toLowerCase() ?? '') ||
+      accountNumber?.includes(this.searchText?.toLowerCase() ?? '') ||
+      currentBill?.includes(this.searchText?.toLowerCase() ?? '') ||
+      dueDate?.includes(this.searchText?.toLowerCase() ?? '') ||
+      status?.includes(this.searchText?.toLowerCase() ?? '');
+  });
+}
+
   logout() {
     setTimeout(() => {
     this.router.navigate(['/landing']);

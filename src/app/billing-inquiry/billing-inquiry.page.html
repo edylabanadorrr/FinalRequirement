@@ -13,30 +13,33 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1 class="cooperative-name">Batangas II Electric Cooperative, Inc</h1>
-  <ion-img class="photo-about" src="assets/photo-about.jpg" alt="photo-about"></ion-img>
-  <h1 class="info">Consumers Information</h1>
-  <ion-searchbar (ionChange)="searchItems($event.detail.value)"></ion-searchbar>
-  <ion-list>
-    <ion-item *ngFor="let accountdetail of filteredConsumers">
-      <ion-label class="entity">Full Name:</ion-label>
-      <ion-label class="consumer-data" id="fullName">{{ accountdetail.fullName }}</ion-label>
-
-      <ion-label class="entity">Account Number:</ion-label>
-      <ion-label class="consumer-data" id="accountNumber">{{ accountdetail.accountNumber }}</ion-label>
-
-      <ion-label class="entity">Area Number:</ion-label>
-      <ion-label class="consumer-data" id="areaNumber">{{ accountdetail.areaNumber }}</ion-label>
-
-      <ion-label class="entity">Municipality:</ion-label>
-      <ion-label class="consumer-data" id="municipality">{{ accountdetail.municipality }}</ion-label>
-
-      <ion-label class="entity">Current Bill:</ion-label>
-      <ion-label class="consumer-data" id="currentBilling">{{ accountdetail.currentBilling }}</ion-label>
-
-      <ion-label class="entity">Due Date:</ion-label>
-      <ion-label class="consumer-data" id="dueDate">{{ accountdetail.dueDate }}</ion-label>
-    </ion-item>
-  </ion-list>
-  <a href="https://www.justpay.to/batelec">Payment Here</a>
+  <h1 class="cooperative-name">Batangas II Electric Cooperative, Inc</h1><br>
+  <ion-img class="billsummary" src="assets/billsummary.jpg" alt="billsummary"></ion-img><br>
+  <div>
+    <h1 class="info">Bill Summary</h1><br>
+    <input class = "search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
+    <div class = "table-container">
+    <table>
+      <tr>
+        <th class = "entity">First Name</th>
+        <th class = "entity">Last Name</th>
+        <th class = "entity">Account Number</th>
+        <th class = "entity">Current Bill</th>
+        <th class = "entity">Due Date</th>
+        <th class = "entity">Status</th>
+      </tr>
+      <tr *ngFor="let billsummary of filteredConsumers">
+        <td class = "consumer-data">{{ billsummary.firstName }}</td>
+        <td class = "consumer-data">{{ billsummary.lastName }}</td>
+        <td class = "consumer-data">{{ billsummary.accountNumber }}</td>
+        <td class = "consumer-data">{{ billsummary.currentBill }}</td>
+        <td class = "consumer-data">{{ billsummary.dueDate }}</td>
+        <td class = "consumer-data">{{ billsummary.status }}</td>
+      </tr>
+    </table>
+    </div>
+  </div>
+    <div class = "payment-link-container">
+        <a href="https://www.justpay.to/batelec" class="payment-link">Payment Here</a>
+    </div>
 </ion-content>
