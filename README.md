@@ -23,6 +23,6 @@ The systems gives access to the customer service with their corresponding login 
 3. Database - mySQL
 
 #Contacts
-abanadoredylbert@gmail.com
-ianmark425@gmail.com
+abanadoredylbert@gmail.com |
+ianmark425@gmail.com |
 20-03815@g.batstate-u.edu.ph
