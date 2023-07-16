@@ -1,4 +1,4 @@
-A final project to be complied for courses IT 331 - Application Development and Emerging Technologies; and IT 332 - Integrative Programming and Technologies.
+A final project to be submitted for courses IT 331 - Application Development and Emerging Technologies; and IT 332 - Integrative Programming and Technologies.
 
 # Design and Development of a Mobile Application Information System for BATELEC II
 
