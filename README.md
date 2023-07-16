@@ -23,6 +23,6 @@ Technologies Used:
 3. Database - mySQL
 
 Contacts: 
-abanadoredylbert@gmail.com |
-ianmark425@gmail.com |
-20-03815@g.batstate-u.edu.ph
+abanadoredylbert@gmail.com | Edylbert Abanador |
+ianmark425@gmail.com | Ian Mark Gutierrez |
+20-03815@g.batstate-u.edu.ph | Aaron Christopher Mendoza
