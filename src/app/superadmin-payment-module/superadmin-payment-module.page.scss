@@ -8,3 +8,157 @@
 .logout {
     margin-right: 30px;
 }
+
+.cooperative-name {
+    font-size: 40px;
+    color: #bfa721;
+    display: flex;
+    justify-content: center;
+}
+
+/* Label and Input - Left side */
+.column-left {
+    padding: 20px;
+}
+
+.firstname-left {
+    font-size: 15px;
+}
+
+.lastname-left {
+    font-size: 15px;
+}
+
+.accountnumber-left {
+    font-size: 15px;
+}
+
+.currentbill-left {
+    font-size: 15px;
+}
+
+.duedate-left {
+    font-size: 15px;
+}
+
+.status-left {
+	font-size: 15px;
+}
+
+.inputText {
+    font-size: 15px;
+    width: 100%;
+}
+
+.container {
+    display: grid;
+    gap: 20px;
+}
+
+.row {
+    display: flex;
+}
+
+.button-container {
+	margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.updateButton {
+    margin-right: 10px;
+    display: flex;
+    padding: 10px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.clearButton {
+    margin-right: 10px;
+    display: flex;
+    padding: 10px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+  
+/* Image */
+
+.column-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.photo-cservice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding: 20px;
+}
+
+/* Consumer Info */
+.table-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    color: #95A5A6;
+}
+
+.entity {
+    font-weight: bold;
+    font-size: 20px;
+    justify-content: center;
+    padding: 8px;
+    margin-right: 10px;
+    color: #E74C3C;
+}
+
+.consumer-data {
+    padding: 8px;
+    color: #95A5A6;
+    text-align: center;
+}
+
+/* Search */
+.search-input {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 400px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+  
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+  
+  
+@media (max-width: 767px) {
+    .photo-cservice
+    {
+        display: none;
+    }
+      
+}

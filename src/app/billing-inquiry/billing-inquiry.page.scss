@@ -15,11 +15,17 @@
     color: #bfa721;
 }
 
+p {
+    display: flex;
+    justify-content: center;
+    color: #f37f7f;;
+}
+
 /* Image */
 
 .billsummary {
     width: 100%;
-    height: 80%;
+    height: 70%;
 }
 
 /* Consumer Info */

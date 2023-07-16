@@ -5,17 +5,75 @@
     </ion-buttons>
     <ion-title>Payment Module</ion-title>
     <ion-buttons slot="end">
-      <ion-button class = "logout" (click)="logout()">
-        Log Out
-      </ion-button>
+      <ion-button class = "logout" (click)="logout()">Log Out</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">superadmin-payment-module</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <ion-content [fullscreen]="true">
+    <h1 class="cooperative-name">Batangas II Electric Cooperative, Inc</h1>
+    <div class="container">
+      <div class="row">
+        <div class="column-left">
+          <h3 class="heading">Click on a consumer to display its information.</h3>
+          <br><br>
+          <label class="firstname-left" for="firstName">First Name:</label><br>
+          <input class="inputText" placeholder="Enter First name" type="text" [(ngModel)]="firstName" id="firstName" name="firstName"><br><br>
+  
+          <label class="lastname-left" for="lastName">Last Name:</label><br>
+          <input class="inputText" placeholder="Enter Last name" type="text" [(ngModel)]="lastName" id="lastName" name="lastName"><br><br>
+  
+          <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
+          <input class="inputText" placeholder="Enter Account number" type="number" [(ngModel)]="accountNumber" id="accountNumber" name="accountNumber"><br><br>
+  
+          <label class="currentbill-left" for="areaNumber">Current Bill:</label><br>
+          <input class="inputText" placeholder="Enter Current Bill" type="number" [(ngModel)]="currentBill" id="currentBill" name="currentBill"><br><br>
+  
+          <label class="duedate-left" for="dueDate">Due Date:</label><br>
+          <input class="inputText" placeholder="Enter Due Date" type="date" [(ngModel)]="dueDate" id="dueDate" name="dueDate"><br><br>
+  
+          <label class="status-left" for="status">Status:</label><br>
+          <select class="inputText" [(ngModel)]="status" id="status" name="status">
+            <option value="Paid">Paid</option>
+            <option value="Unpaid">Unpaid</option>
+            <option value="Overdue">Overdue</option>
+          </select>
+  
+          <div class="button-container">
+            <button class="updateButton" (click)="updateBillSummary()" *ngIf="selectedConsumer !== null">Update</button>
+            <button class="clearButton" (click)="clearForm()">Clear</button>
+            <script src="superadmin-payment-module.page.ts" type="module"></script>
+          </div>
+        </div>
+
+        <div class="column-right">
+          <ion-img class="photo-cservice" src="assets/photo-cservice.jpg" alt="photo-cservice"></ion-img>
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <h1 class="info">Consumer's Bill Summary</h1><br>
+      <input class="search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
+      <div class="table-container">
+        <table>
+          <tr>
+            <th class="entity">First Name</th>
+            <th class="entity">Last Name</th>
+            <th class="entity">Account Number</th>
+            <th class="entity">Current Bill</th>
+            <th class="entity">Due Date</th>
+            <th class="entity">Status</th>
+          </tr>
+          <tr *ngFor="let billsummary of filteredConsumers" (click)="populateFields(billsummary)">
+            <td class="consumer-data">{{ billsummary.firstName }}</td>
+            <td class="consumer-data">{{ billsummary.lastName }}</td>
+            <td class="consumer-data">{{ billsummary.accountNumber }}</td>
+            <td class="consumer-data">{{ billsummary.currentBill }}</td>
+            <td class="consumer-data">{{ billsummary.dueDate }}</td>
+            <td class="consumer-data">{{ billsummary.status }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </ion-content>
