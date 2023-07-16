@@ -62,4 +62,10 @@ export class BillingInquiryPage implements OnInit {
       this.filteredConsumers = this.accountDetails;
     }
   }
+  
+  logout() {
+    setTimeout(() => {
+    this.router.navigate(['/landing']);
+  }, 300);
+}
 }

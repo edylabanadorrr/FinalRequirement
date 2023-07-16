@@ -54,7 +54,7 @@ export class LoginPage {
           console.log(response);
           if (response.status === 'success') {
             setTimeout(() => {
-            this.router.navigate(['/admin-interface']);
+            this.router.navigate(['/superadmin-interface']);
           }, 300);
         }
     });

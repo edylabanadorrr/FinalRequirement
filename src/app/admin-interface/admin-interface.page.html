@@ -3,7 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Welcome, Super Admin!</ion-title>
+    <ion-title>Manage Consumer Information, Super Admin!</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class = "logout" (click)="logout()">
+        Log Out
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -76,8 +81,4 @@
     </table>
     </div>
   </div>
-
-  <br>
-  <ion-button [routerLink]="['/superadmin-payment-module']" shape="round" expand="block" color="success">Payment Module</ion-button>
-  <br>
 </ion-content>

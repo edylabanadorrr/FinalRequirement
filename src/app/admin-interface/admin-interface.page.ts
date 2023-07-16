@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ConsumerService } from '../consumer.service';
-import { NgForm } from '@angular/forms';
-import { RegistrationComponent } from '../registration/registration.component';
+import { Router } from '@angular/router';
 
 interface Consumer {
   ConsumerID: string;
@@ -45,7 +43,7 @@ export class AdminInterfacePage implements OnInit {
     password: '',
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.ConsumerID = 0;
     this.firstName = '';
     this.lastName = '';
@@ -72,6 +70,7 @@ export class AdminInterfacePage implements OnInit {
     }
     );
   }
+
     // Fetch data in input fields 
   populateFields(consumer: Consumer) {
     this.selectedConsumer = consumer;
@@ -139,6 +138,7 @@ deleteConsumer() {
       (response: any) => {
         console.log(response); // Handle success scenario
         this.selectedConsumer = null; // Reset selected customer
+        this.clearForm();
         this.fetchConsumers(); // Update the customer list after the delete
       },
       (error: any) => {
@@ -177,4 +177,10 @@ deleteConsumer() {
         consumer.password.toLowerCase().includes(this.searchText.toLowerCase());
     });
   }
+
+  logout() {
+    setTimeout(() => {
+    this.router.navigate(['/landing']);
+  }, 300);
+}
 }

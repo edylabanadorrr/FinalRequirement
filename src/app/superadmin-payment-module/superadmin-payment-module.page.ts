@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-superadmin-payment-module',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SuperadminPaymentModulePage implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
   }
-
+  logout() {
+    setTimeout(() => {
+    this.router.navigate(['/landing']);
+  }, 300);
+}
 }

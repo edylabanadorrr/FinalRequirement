@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Welcome, Super Admin!</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <h1 class = "cooperative-name">Batangas II Electric Cooperative, Inc </h1><br>
+    <ion-img class="photo-superadmin" src="assets/photo-superadmin.jpg" alt="photo-superadmin"></ion-img>
+    <br><ion-button [routerLink]="['/admin-interface']" shape = "round" expand = "block" color="success">Manage Consumer Details</ion-button>
+    <br><ion-button [routerLink]="['/superadmin-payment-module']" shape = "round" expand = "block" color="danger">Payment Module</ion-button>
+  </ion-header>
+</ion-content>

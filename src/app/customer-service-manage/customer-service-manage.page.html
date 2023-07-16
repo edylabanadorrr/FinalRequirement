@@ -3,7 +3,12 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Manage Account Details, Customer Service!</ion-title>
+    <ion-title>Manage Consumer Information, Customer Service!</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class = "logout" (click)="logout()">
+        Log Out
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -21,7 +26,7 @@
         <input class="inputText" placeholder="Enter Last name" type="text" [(ngModel)]="lastName" id="lastName" name="lastName"><br><br>
 
         <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
-        <input class="inputText" placeholder="Enter Account number" type="text" [(ngModel)]="accountNumber" id="accountNumber" name="accountNumber"><br><br>
+        <input class="inputText" placeholder="Enter Account number" type="number" [(ngModel)]="accountNumber" id="accountNumber" name="accountNumber"><br><br>
 
         <label class="areanumber-left" for="areaNumber">Area Number:</label><br>
         <input class="inputText" placeholder="Enter Area Number" type="number" [(ngModel)]="areaNumber" id="areaNumber" name="areaNumber"><br><br>
@@ -37,8 +42,8 @@
 
         <div class="button-container">
           <button class="addButton" type="submit" (click)="submitForm()">Add</button>
-          <button class="updateButton" (click)="updateConsumer()">Update</button>
-          <button class="deleteButton" onclick="updateData()">Delete</button>
+          <button class="updateButton" (click)="updateConsumer()" *ngIf="selectedConsumer !== null">Update</button>
+          <button class="deleteButton" (click)="deleteConsumer()" *ngIf="selectedConsumer !== null">Delete</button>
           <button class="clearButton" (click)="clearForm()">Clear</button>
           <script src="admin-interface.page.ts" type="module"></script>
         </div>

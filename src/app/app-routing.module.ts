@@ -70,7 +70,11 @@ const routes: Routes = [
   {
     path: 'consumer-account-details',
     loadChildren: () => import('./consumer-account-details/consumer-account-details.module').then( m => m.ConsumerAccountDetailsPageModule)
+  },  {
+    path: 'superadmin-interface',
+    loadChildren: () => import('./superadmin-interface/superadmin-interface.module').then( m => m.SuperadminInterfacePageModule)
   },
+
 
 
 ];
