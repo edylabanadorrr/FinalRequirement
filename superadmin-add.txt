@@ -1,0 +1,45 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
+$data = json_decode(file_get_contents('php://input'), true);
+
+$host = 'localhost';
+$user_name = 'root';
+$pass_word = '';
+$database = 'ionic-batelec';
+
+$conn = mysqli_connect($host, $user_name, $pass_word, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$firstName = mysqli_real_escape_string($conn, $data['firstName']);
+$lastName = mysqli_real_escape_string($conn, $data['lastName']);
+$accountNumber = intval($data['accountNumber']);
+$areaNumber = intval($data['areaNumber']);
+$municipality = mysqli_real_escape_string($conn, $data['municipality']);
+$username = mysqli_real_escape_string($conn, $data['username']);
+$password = mysqli_real_escape_string($conn, $data['password']);
+
+$sql = "INSERT INTO consumertable (firstName, lastName, accountNumber, areaNumber, municipality, username, password) 
+        VALUES ('$firstName', '$lastName', '$accountNumber', '$areaNumber', '$municipality', '$username', '$password')";
+
+if ($conn->query($sql) === true) {
+    $response = array('status' => 'success', 'message' => 'Consumer added successfully');
+    echo json_encode($response);
+} else {
+    $response = array('status' => 'error', 'message' => 'Failed to add consumer', 'error' => $conn->error);
+    echo json_encode($response);
+}
+
+$conn->close();
+?>
