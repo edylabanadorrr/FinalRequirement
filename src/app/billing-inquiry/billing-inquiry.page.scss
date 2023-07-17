@@ -10,6 +10,7 @@
 }
 
 .cooperative-name {
+    font-size: 40px;
     display: flex;
     justify-content: center;
     color: #bfa721;
@@ -21,11 +22,79 @@ p {
     color: #f37f7f;;
 }
 
+/* Label and Input - Left side */
+.column-left {
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.firstname-left {
+    font-size: 15px;
+}
+
+.lastname-left {
+    font-size: 15px;
+}
+
+.accountnumber-left {
+    font-size: 15px;
+}
+
+.currentbill-left {
+    font-size: 15px;
+}
+
+.status-left {
+	font-size: 15px;
+}
+
+.inputText {
+    font-size: 15px;
+    width: 100%;
+}
+
+.container {
+    display: grid;
+    gap: 20px;
+}
+
+.row {
+    display: flex;
+}
+
+.button-container {
+	margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.addPayment {
+    margin-right: 10px;
+    display: flex;
+    padding: 10px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.clearButton {
+    margin-right: 10px;
+    display: flex;
+    padding: 10px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 /* Image */
 
-.billsummary {
+.photo-billsummary {
     width: 100%;
-    height: 70%;
+    height: 80%;
+    margin-top: 20px;
+    margin-left: 60px;
 }
 
 /* Consumer Info */
@@ -33,6 +102,7 @@ p {
     display: flex;
     justify-content: center;
     padding: 10px;
+    
 }
 
 .info {

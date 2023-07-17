@@ -11,6 +11,18 @@ interface billSummary {
   dueDate: string;
   status: string;
 }
+
+interface BillPayment {
+  paymentID: string;
+  billSummaryID: string;
+  ConsumerID: string;
+  firstName: string;
+  lastName: string;
+  accountNumber: string;
+  currentBill: string;
+  payment: string;
+}
+
 @Component({
   selector: 'app-superadmin-payment-module',
   templateUrl: './superadmin-payment-module.page.html',
@@ -18,36 +30,58 @@ interface billSummary {
 })
 
 export class SuperadminPaymentModulePage implements OnInit {
+  paymentID: number;
   billSummaryID: number;
+  ConsumerID: number;
   firstName: string;
   lastName: string;
   accountNumber: string;
   currentBill: string;
   dueDate: string;
   status: string;
+  payment: string;
   billSummary: billSummary[] = [];
+  billPayment: BillPayment[] = [];
   searchText: string;
+  selectedPayment: BillPayment | null = null;
   selectedConsumer: billSummary | null = null;
 
 constructor(private http: HttpClient, private router: Router) { 
+  this.paymentID = 0;
   this.billSummaryID = 0;
+  this.ConsumerID = 0;
   this.firstName = '';
   this.lastName = '';
   this.accountNumber = '';
   this.currentBill = '';
   this.dueDate = '';
   this.status = '';
+  this.payment = '';
 }
 
 ngOnInit() {
   this.loadBillSummary();
+  this.loadBillPayment();
 }
+
 
 loadBillSummary() {
   this.http.get< any >('http://localhost/ionic/billsummary.php').subscribe(
     (data) => {
       this.billSummary = data;
       console.log(this.billSummary);
+  },
+    (error) => {
+      console.error('Error fetching user data:', error);
+  }
+  );
+}
+
+loadBillPayment() {
+  this.http.get< any >('http://localhost/ionic/billpayment.php').subscribe(
+    (data) => {
+      this.billPayment = data;
+      console.log(this.billPayment);
   },
     (error) => {
       console.error('Error fetching user data:', error);
@@ -113,6 +147,21 @@ get filteredConsumers(): billSummary[] {
       currentBill?.includes(this.searchText?.toLowerCase() ?? '') ||
       dueDate?.includes(this.searchText?.toLowerCase() ?? '') ||
       status?.includes(this.searchText?.toLowerCase() ?? '');
+  });
+}
+
+// Search Function
+get filteredPayment(): BillPayment[] {
+  return this.billPayment.filter(billPayment => {
+    const fullName = (billPayment.firstName + ' ' + billPayment.lastName).toLowerCase();
+    const accountNumber = billPayment.accountNumber?.toString().toLowerCase();
+    const currentBill = billPayment.currentBill?.toLowerCase();
+    const payment = billPayment.payment?.toLowerCase();
+
+    return fullName.includes(this.searchText?.toLowerCase() ?? '') ||
+      accountNumber?.includes(this.searchText?.toLowerCase() ?? '') ||
+      currentBill?.includes(this.searchText?.toLowerCase() ?? '') ||
+      payment?.includes(this.searchText?.toLowerCase() ?? '');
   });
 }
 

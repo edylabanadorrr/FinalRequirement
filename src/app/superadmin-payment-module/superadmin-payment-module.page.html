@@ -52,7 +52,7 @@
       </div>
     </div>
   
-    <div>
+    <div class = "billsummary-table">
       <h1 class="info">Consumer's Bill Summary</h1><br>
       <input class="search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
       <div class="table-container">
@@ -78,4 +78,28 @@
         </table>
       </div>
     </div>
-  </ion-content>
+    <div class = "billpayment-table">
+      <h1 class="info">Consumer's Input Payment</h1><br>
+      <input class="search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
+      <div class="table-container">
+        <table>
+          <tr>
+            <th class="entity">Bill Summary ID</th>
+            <th class="entity">Consumer ID</th>
+            <th class="entity">First Name</th>
+            <th class="entity">Last Name</th>
+            <th class="entity">Account Number</th>
+            <th class="entity">Current Bill</th>
+            <th class="entity">Payment</th>
+          </tr>
+          <tr *ngFor="let billpayment of filteredPayment" (click)="populateFields(billpayment)">
+            <td class="consumer-data">{{ billpayment.billSummaryID }}</td>
+            <td class="consumer-data">{{ billpayment.ConsumerID }}</td>
+            <td class="consumer-data">{{ billpayment.firstName }}</td>
+            <td class="consumer-data">{{ billpayment.lastName }}</td>
+            <td class="consumer-data">{{ billpayment.accountNumber }}</td>
+            <td class="consumer-data">{{ billpayment.currentBill }}</td>
+            <td class="consumer-data">{{ billpayment.payment }}</td>
+          </tr>
+          </table>
+          </div>

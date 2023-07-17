@@ -11,6 +11,7 @@ interface billSummary {
   currentBill: string;
   dueDate: string;
   status: string;
+  payment: string;
 }
 @Component({
   selector: 'app-billing-inquiry',
@@ -28,6 +29,7 @@ export class BillingInquiryPage implements OnInit {
   currentBill: string;
   dueDate: string;
   status: string;
+  payment: string;
   billSummary: billSummary[] = [];
   searchText: string;
   selectedConsumer: billSummary | null = null;
@@ -41,6 +43,7 @@ export class BillingInquiryPage implements OnInit {
     this.currentBill = '';
     this.dueDate = '';
     this.status = '';
+    this.payment = '';
   }
 
   ngOnInit() {
@@ -58,6 +61,53 @@ export class BillingInquiryPage implements OnInit {
       }
     );
   }
+
+  addPayment() {
+    if (this.selectedConsumer !== null) {
+      const formData: billSummary = {
+        billSummaryID: this.selectedConsumer.billSummaryID,
+        ConsumerID: this.ConsumerID,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        accountNumber: this.accountNumber,
+        currentBill: this.currentBill,
+        dueDate: this.dueDate,
+        status: this.status,
+        payment: this.payment
+      };
+          
+        this.http.post('http://localhost/ionic/payment.php', formData)
+        .subscribe(response => {
+        console.log(response); // Handle success scenario
+        // Reset selected customer and form fields
+        this.selectedConsumer = null;
+        this.clearForm();
+        this.loadBillSummary(); // Update the customer list after the update
+      });
+    }
+  }
+
+// Fetch data in input fields 
+populateFields(billSummary: billSummary) {
+  this.selectedConsumer = billSummary;
+  this.ConsumerID = billSummary.ConsumerID;
+  this.firstName = billSummary.firstName;
+  this.lastName = billSummary.lastName;
+  this.accountNumber = billSummary.accountNumber;
+  this.currentBill = billSummary.currentBill;
+  this.status = billSummary.status;
+}
+
+// Clear Function
+clearForm() {
+  this.ConsumerID = '';
+  this.firstName = '';
+  this.lastName = '';
+  this.accountNumber = '';
+  this.currentBill = '';
+  this.payment = '';
+}
+
 // Search Function
 get filteredConsumers(): billSummary[] {
   return this.billSummary.filter(billSummary => {

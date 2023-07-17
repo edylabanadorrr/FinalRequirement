@@ -43,7 +43,6 @@ export class LoginPage {
     
     this.http.post('http://localhost/ionic/login.php', formData)
     .subscribe((response: any) => {
-      console.log(response);
       if (response.status === 'success') {
         setTimeout(() => {
         this.router.navigate(['/consumer-interface']);
@@ -51,7 +50,6 @@ export class LoginPage {
     }
         this.http.post('http://localhost/ionic/login-admin.php', formData)
         .subscribe((response: any) => {
-          console.log(response);
           if (response.status === 'success') {
             setTimeout(() => {
             this.router.navigate(['/superadmin-interface']);
@@ -60,7 +58,6 @@ export class LoginPage {
     });
         this.http.post('http://localhost/ionic/login-cashier.php', formData)
         .subscribe((response: any) => {
-          console.log(response);
           if (response.status === 'success') {
             setTimeout(() => {
             this.router.navigate(['/cashier']);
@@ -69,7 +66,6 @@ export class LoginPage {
     });
         this.http.post('http://localhost/ionic/login-cservice.php', formData)
         .subscribe((response: any) => {
-          console.log(response);
           if (response.status === 'success') {
             setTimeout(() => {
             this.router.navigate(['/customer-service']);

@@ -13,8 +13,44 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1 class="cooperative-name">Batangas II Electric Cooperative, Inc</h1><br>
-  <ion-img class="billsummary" src="assets/billsummary.jpg" alt="billsummary"></ion-img><br>
+  <h1 class="cooperative-name">Batangas II Electric Cooperative, Inc</h1>
+  <div class="container">
+    <div class="row">
+      <div class="column-left">
+        <h3 class="heading">Click on a consumer to display its information.</h3>
+        <br><br>
+        
+        <label class="consumerid-left" for="ConsumerID">Consumer ID:</label><br>
+        <input class="inputText" placeholder="Enter Consumer ID" type="text" [(ngModel)]="ConsumerID" id="ConsumerID" name="ConsumerID"><br><br>
+
+        <label class="firstname-left" for="firstName">First Name:</label><br>
+        <input class="inputText" placeholder="Enter First name" type="text" [(ngModel)]="firstName" id="firstName" name="firstName"><br><br>
+
+        <label class="lastname-left" for="lastName">Last Name:</label><br>
+        <input class="inputText" placeholder="Enter Last name" type="text" [(ngModel)]="lastName" id="lastName" name="lastName"><br><br>
+
+        <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
+        <input class="inputText" placeholder="Enter Account number" type="number" [(ngModel)]="accountNumber" id="accountNumber" name="accountNumber"><br><br>
+
+        <label class="currentbill-left" for="areaNumber">Current Bill:</label><br>
+        <input class="inputText" placeholder="Enter Current Bill" type="number" [(ngModel)]="currentBill" id="currentBill" name="currentBill"><br><br>
+
+        <label class="payment-left" for="payment">Payment:</label><br>
+        <input class="inputText" placeholder="Enter Payment" type="number" [(ngModel)]="payment" id="payment" name="payment"><br><br>
+
+        <div class="button-container">
+          <button class="addPayment" (click) = "addPayment()" *ngIf = "selectedConsumer !== null">Add Payment</button>
+          <button class="clearButton" (click) = "clearForm()">Clear</button>
+          <script src="billing-inquiry.page.ts" type="module"></script>
+        </div>
+      </div>
+
+      <div class="column-right">
+        <ion-img class="photo-billsummary" src="assets/billsummary.jpg" alt="photo-billsummary"></ion-img>
+      </div>
+    </div>
+  </div>
+
   <div>
     <h1 class="info">Bill Summary</h1><br>
     <input class = "search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
@@ -29,7 +65,7 @@
         <th class = "entity">Due Date</th>
         <th class = "entity">Status</th>
       </tr>
-      <tr *ngFor="let billsummary of filteredConsumers">
+      <tr *ngFor="let billsummary of filteredConsumers" (click)="populateFields(billsummary)">
         <td class = "consumer-data">{{ billsummary.ConsumerID }}</td>
         <td class = "consumer-data">{{ billsummary.firstName }}</td>
         <td class = "consumer-data">{{ billsummary.lastName }}</td>
