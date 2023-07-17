@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div>
+  <div class = "billsummary-table">
     <h1 class="info">Bill Summary</h1><br>
     <input class = "search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
     <div class = "table-container">
@@ -79,6 +79,12 @@
     <p>Please settle your bills before the due date, thank you!</p><br>
   </div>
     <div class = "payment-link-container">
-        <a href="https://www.justpay.to/batelec" class="payment-link">Payment Here</a>
+      <a href="https://www.justpay.to/batelec" class="payment-link">Payment Here</a>
+    </div>
+    <div class = "file-upload">
+    <form>
+      <input type="file" name="fileUpload" id="fileUpload">
+      <button class = "upload-btn" type="submit">Upload</button>
+    </form>
     </div>
 </ion-content>

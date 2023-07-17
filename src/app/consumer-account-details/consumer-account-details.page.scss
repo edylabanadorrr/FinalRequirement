@@ -15,10 +15,12 @@
     display: flex;
     justify-content: center;
 }
+
 /* Label and Input - Left side */
 .heading {
     font-size: 50px;
 }
+
 .firstname-left {
     font-size: 15px;
 }
@@ -38,6 +40,7 @@
 .municipality-left {
     font-size: 15px;
 }
+
 .username-left {
     font-size: 15px;
 }
@@ -110,6 +113,22 @@
     margin-right: 20px;
     margin-left: 20px;
     padding: 20px;
+}
+
+/* Table */
+.consumerinfo-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #000000;
+    border-radius: 8px;
+}
+
+.entity:hover {
+    color: #007bff;
+}
+
+.consumer-data:hover {
+    color: #bfa721;
 }
 
 /* Consumer Info */

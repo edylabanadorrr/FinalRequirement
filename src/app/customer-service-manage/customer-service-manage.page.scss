@@ -130,6 +130,22 @@
     padding: 20px;
 }
 
+/* Table */
+.consumerinfo-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #000000;
+    border-radius: 8px;
+}
+
+.entity:hover {
+    color: #007bff;
+}
+
+.consumer-data:hover {
+    color: #bfa721;
+}
+
 /* Consumer Info */
 .table-container {
     display: flex;
