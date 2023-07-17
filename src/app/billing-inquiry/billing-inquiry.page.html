@@ -21,6 +21,7 @@
     <div class = "table-container">
     <table>
       <tr>
+        <th class = "entity">Consumer ID</th>
         <th class = "entity">First Name</th>
         <th class = "entity">Last Name</th>
         <th class = "entity">Account Number</th>
@@ -29,6 +30,7 @@
         <th class = "entity">Status</th>
       </tr>
       <tr *ngFor="let billsummary of filteredConsumers">
+        <td class = "consumer-data">{{ billsummary.ConsumerID }}</td>
         <td class = "consumer-data">{{ billsummary.firstName }}</td>
         <td class = "consumer-data">{{ billsummary.lastName }}</td>
         <td class = "consumer-data">{{ billsummary.accountNumber }}</td>

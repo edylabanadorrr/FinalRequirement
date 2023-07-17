@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 interface billSummary {
   billSummaryID: string;
+  ConsumerID: string;
   firstName: string;
   lastName: string;
   accountNumber: string;
@@ -20,6 +21,7 @@ interface billSummary {
 
 export class BillingInquiryPage implements OnInit {
   billSummaryID: number;
+  ConsumerID: string;
   firstName: string;
   lastName: string;
   accountNumber: string;
@@ -32,6 +34,7 @@ export class BillingInquiryPage implements OnInit {
 
   constructor(private http: HttpClient, private router: Router) { 
     this.billSummaryID = 0;
+    this.ConsumerID = '';
     this.firstName = '';
     this.lastName = '';
     this.accountNumber = '';
@@ -59,12 +62,14 @@ export class BillingInquiryPage implements OnInit {
 get filteredConsumers(): billSummary[] {
   return this.billSummary.filter(billSummary => {
     const fullName = (billSummary.firstName + ' ' + billSummary.lastName).toLowerCase();
+    const ConsumerID = billSummary.ConsumerID?.toString().toLowerCase();
     const accountNumber = billSummary.accountNumber?.toString().toLowerCase();
     const currentBill = billSummary.currentBill?.toLowerCase();
     const dueDate = billSummary.dueDate?.toLowerCase();
     const status = billSummary.status?.toLowerCase();
 
     return fullName.includes(this.searchText?.toLowerCase() ?? '') ||
+      ConsumerID?.includes(this.searchText?.toLowerCase() ?? '') ||
       accountNumber?.includes(this.searchText?.toLowerCase() ?? '') ||
       currentBill?.includes(this.searchText?.toLowerCase() ?? '') ||
       dueDate?.includes(this.searchText?.toLowerCase() ?? '') ||
