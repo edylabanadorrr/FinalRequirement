@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 interface Consumer {
   ConsumerID: string;
   firstName: string;
@@ -15,8 +16,10 @@ interface Consumer {
 @Component({
   selector: 'app-consumer-account-details',
   templateUrl: './consumer-account-details.page.html',
+  template: ' <button (click)="confirmLogout()">Logout</button>',
   styleUrls: ['./consumer-account-details.page.scss'],
 })
+
 export class ConsumerAccountDetailsPage implements OnInit {
   ConsumerID: number;
   firstName: string;
@@ -41,7 +44,7 @@ export class ConsumerAccountDetailsPage implements OnInit {
     password: '',
   };
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private alertController: AlertController) {
     this.ConsumerID = 0;
     this.firstName = '';
     this.lastName = '';
@@ -128,6 +131,29 @@ export class ConsumerAccountDetailsPage implements OnInit {
           consumer.password.toLowerCase().includes(this.searchText.toLowerCase());
       });
     }
+
+    /* Logout Function */
+
+async confirmLogout() {
+  const alert = await this.alertController.create({
+    header: 'Logout',
+    message: 'Are you sure you want to log out?',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel'
+      },
+      {
+        text: 'Yes',
+        handler: () => {
+          this.logout();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
 
     logout() {
       setTimeout(() => {

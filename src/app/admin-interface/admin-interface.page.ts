@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 interface Consumer {
   ConsumerID: string;
@@ -16,6 +17,7 @@ interface Consumer {
 @Component({
   selector: 'app-admin-interface',
   templateUrl: './admin-interface.page.html',
+  template: ' <button (click)="confirmLogout()">Logout</button>',
   styleUrls: ['./admin-interface.page.scss'],
 })
 
@@ -43,7 +45,7 @@ export class AdminInterfacePage implements OnInit {
     password: '',
   };
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private alertController: AlertController) {
     this.ConsumerID = 0;
     this.firstName = '';
     this.lastName = '';
@@ -106,6 +108,7 @@ export class AdminInterfacePage implements OnInit {
       console.error(error); // Log the error message
     }
 }
+
   updateConsumer() {
     if (this.selectedConsumer !== null) {
         const formData: Consumer = {
@@ -148,7 +151,6 @@ deleteConsumer() {
   }
 }
 
-
   // Password encryption
   maskPassword(password: string): string {
     return '*'.repeat(password.length);
@@ -177,6 +179,29 @@ deleteConsumer() {
         consumer.password.toLowerCase().includes(this.searchText.toLowerCase());
     });
   }
+
+  /* Logout Function */
+
+async confirmLogout() {
+  const alert = await this.alertController.create({
+    header: 'Logout',
+    message: 'Are you sure you want to log out?',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel'
+      },
+      {
+        text: 'Yes',
+        handler: () => {
+          this.logout();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
 
   logout() {
     setTimeout(() => {

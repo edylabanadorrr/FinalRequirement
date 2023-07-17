@@ -1,0 +1,42 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Consumer Requests</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="logout" (click)="confirmLogout()">
+        Log Out
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header>
+    <h1 class="cooperative-name">Batangas II Electric Cooperative, Inc</h1>
+    <div class = "container">
+    <ion-img class="photo-forgotpassword" src="assets/photo-forgotpassword.jpg" alt="photo-forgotpassword"></ion-img>
+  </div>
+  </ion-header>
+  <div class="consumerrequest-table">
+    <h1 class="info">Consumer Requests for Password</h1><br>
+    <input class="search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
+    <div class="table-container">
+      <table>
+        <tr>
+          <th class="entity">Request ID</th>
+          <th class="entity">Account Number</th>
+          <th class="entity">Email</th>
+          <th class="entity">Contact Number</th>
+        </tr>
+        <tr *ngFor="let request of filteredRequests" (click) = "populateFields(request)">
+          <td class="request-data">{{ request.requestID }}</td>
+          <td class="request-data">{{ request.accountNumber }}</td>
+          <td class="request-data">{{ request.email }}</td>
+          <td class="request-data">{{ request.contactNumber }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ion-content>

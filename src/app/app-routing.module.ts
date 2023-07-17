@@ -74,6 +74,10 @@ const routes: Routes = [
     path: 'superadmin-interface',
     loadChildren: () => import('./superadmin-interface/superadmin-interface.module').then( m => m.SuperadminInterfacePageModule)
   },
+  {
+    path: 'superadmin-request',
+    loadChildren: () => import('./superadmin-request/superadmin-request.module').then( m => m.SuperadminRequestPageModule)
+  },
 
 
 

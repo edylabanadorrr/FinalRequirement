@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 interface Consumer {
   ConsumerID: string;
@@ -15,6 +16,7 @@ interface Consumer {
 @Component({
   selector: 'app-customer-service-manage',
   templateUrl: './customer-service-manage.page.html',
+  template: ' <button (click)="confirmLogout()">Logout</button>',
   styleUrls: ['./customer-service-manage.page.scss'],
 })
 
@@ -42,7 +44,7 @@ export class CustomerServiceManagePage implements OnInit {
     password: '',
   };
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private alertController: AlertController) {
     this.ConsumerID = 0;
     this.firstName = '';
     this.lastName = '';
@@ -175,9 +177,33 @@ export class CustomerServiceManagePage implements OnInit {
       });
     }
 
-    logout() {
-      setTimeout(() => {
-      this.router.navigate(['/landing']);
-    }, 300);
+/* Logout Function */
+/* Logout Function */
+
+async confirmLogout() {
+  const alert = await this.alertController.create({
+    header: 'Logout',
+    message: 'Are you sure you want to log out?',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel'
+      },
+      {
+        text: 'Yes',
+        handler: () => {
+          this.logout();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+logout() {
+    setTimeout(() => {
+    this.router.navigate(['/landing']);
+  }, 300);
   }
 }

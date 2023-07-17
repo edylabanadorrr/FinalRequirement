@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 interface billSummary {
   billSummaryID: string;
@@ -16,6 +17,7 @@ interface billSummary {
 @Component({
   selector: 'app-billing-inquiry',
   templateUrl: './billing-inquiry.page.html',
+  template: ' <button (click)="confirmLogout()">Logout</button>',
   styleUrls: ['./billing-inquiry.page.scss'],
 })
 
@@ -34,7 +36,7 @@ export class BillingInquiryPage implements OnInit {
   searchText: string;
   selectedConsumer: billSummary | null = null;
 
-  constructor(private http: HttpClient, private router: Router) { 
+  constructor(private http: HttpClient, private router: Router, private alertController: AlertController) { 
     this.billSummaryID = 0;
     this.ConsumerID = '';
     this.firstName = '';
@@ -126,6 +128,30 @@ get filteredConsumers(): billSummary[] {
       status?.includes(this.searchText?.toLowerCase() ?? '');
   });
 }
+
+/* Logout Function */
+
+async confirmLogout() {
+  const alert = await this.alertController.create({
+    header: 'Logout',
+    message: 'Are you sure you want to log out?',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel'
+      },
+      {
+        text: 'Yes',
+        handler: () => {
+          this.logout();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
 
   logout() {
     setTimeout(() => {

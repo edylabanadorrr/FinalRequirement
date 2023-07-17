@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 interface billSummary {
   billSummaryID: string;
@@ -26,6 +27,7 @@ interface BillPayment {
 @Component({
   selector: 'app-superadmin-payment-module',
   templateUrl: './superadmin-payment-module.page.html',
+  template: ' <button (click)="confirmLogout()">Logout</button>',
   styleUrls: ['./superadmin-payment-module.page.scss'],
 })
 
@@ -46,7 +48,7 @@ export class SuperadminPaymentModulePage implements OnInit {
   selectedPayment: BillPayment | null = null;
   selectedConsumer: billSummary | null = null;
 
-constructor(private http: HttpClient, private router: Router) { 
+constructor(private http: HttpClient, private router: Router, private alertController: AlertController) { 
   this.paymentID = 0;
   this.billSummaryID = 0;
   this.ConsumerID = 0;
@@ -163,6 +165,29 @@ get filteredPayment(): BillPayment[] {
       currentBill?.includes(this.searchText?.toLowerCase() ?? '') ||
       payment?.includes(this.searchText?.toLowerCase() ?? '');
   });
+}
+
+/* Logout Function */
+
+async confirmLogout() {
+  const alert = await this.alertController.create({
+    header: 'Logout',
+    message: 'Are you sure you want to log out?',
+    buttons: [
+      {
+        text: 'No',
+        role: 'cancel'
+      },
+      {
+        text: 'Yes',
+        handler: () => {
+          this.logout();
+        }
+      }
+    ]
+  });
+
+  await alert.present();
 }
 
 logout() {
