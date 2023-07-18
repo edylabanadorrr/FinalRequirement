@@ -209,11 +209,44 @@
     margin-right: 10px;
     color: #fc4d4d;
 }
-  
-@media (max-width: 767px) {
-    .photo-about
-    {
+
+@media (max-width: 828px) {
+
+    .cooperative-name {
+        text-align: center;
+    }
+
+    .photo-accountdetails {
         display: none;
     }
-      
+
+    .heading {
+        font-size: 35px;
+    }
+
+    .column-left {
+        margin-left: 20px;
+    }
+
+    .input-accountnumber {
+        margin-left: 120px;
+        margin-right: 400px;
+    }
+
+    .consumerinfo-table {
+        text-align: center;
+    }
+
+    .info {
+        display: flex;
+        justify-content: flex-start;
+        text-indent: 100px;
+    }
+
+    .note {
+        display: flex;
+        justify-content: flex-start;
+        text-align: center;
+        text-indent: 10px;
+    }
 }

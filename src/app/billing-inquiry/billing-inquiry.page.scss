@@ -25,7 +25,6 @@ p {
 /* Label and Input - Left side */
 .column-left {
     padding: 20px;
-    margin-left: 20px;
 }
 
 .firstname-left {
@@ -51,11 +50,6 @@ p {
 .inputText {
     font-size: 15px;
     width: 100%;
-}
-
-.container {
-    display: grid;
-    gap: 20px;
 }
 
 .row {
@@ -118,7 +112,6 @@ p {
     display: flex;
     justify-content: center;
     padding: 10px;
-    
 }
 
 .info {
@@ -203,4 +196,24 @@ p {
 
 .upload-btn:hover {
     color: #66abf5;
+}
+
+@media (max-width: 828px) {
+    
+    .cooperative-name {
+        text-align: center;
+    }
+
+    .heading {
+        text-align: justify;
+    }
+
+    .photo-billsummary {
+        display: none;
+    }
+
+    .input-accountnumber {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

@@ -183,8 +183,16 @@
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
   
-  
-@media (max-width: 767px) {
+@media (max-width: 828px) {
+
+    .cooperative-name {
+        text-align: center;
+    }
+
+    .heading {
+        text-align: justify;
+    }
+
     .photo-cservice
     {
         display: none;

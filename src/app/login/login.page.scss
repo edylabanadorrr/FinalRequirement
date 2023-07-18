@@ -41,7 +41,7 @@
 
 .background-image {
     position: relative;
-  }
+}
   
   .background-image::before {
     content: "";
@@ -60,4 +60,23 @@
 .forgot-password {
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 828px) {
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .fill-up {
+        padding: 50px;
+    }
+
+    .forgot-password {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

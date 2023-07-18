@@ -32,8 +32,16 @@
     left: 0;
     right: 0;
     bottom: 0;
+    height: 100vh;
     background-image: url('/assets/photo-superadmin.jpg');
     background-size: cover; 
     background-position: center;
     opacity: 0.3;
+}
+
+@media (max-width: 828px) {
+    
+    .container {
+        margin-top: 300px;
+    }
 }

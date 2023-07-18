@@ -209,8 +209,17 @@
 }
   
   
-@media (max-width: 767px) {
-    .photo-about
+@media (max-width: 828px) {
+
+    .cooperative-name {
+        text-align: center;
+    }
+
+    .heading {
+        text-align: justify;
+    }
+    
+    .photo-cservice
     {
         display: none;
     }
