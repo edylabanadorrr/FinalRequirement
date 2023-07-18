@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -9,10 +10,10 @@
       </div>
       <ion-title>BATELEC II</ion-title>
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="['/about']" expand="block">ABOUT </ion-button>
-      <ion-button [routerLink]="['/registration']" expand="block">SIGN UP</ion-button>
-      <ion-button [routerLink]="['/login']" expand="block">LOGIN</ion-button>
+    <ion-buttons slot="end" class = "responsive-buttons">
+      <ion-button [routerLink]="['/about']" expand="block" class = "about-button">ABOUT </ion-button>
+      <ion-button [routerLink]="['/registration']" expand="block" class = "hide-sm">SIGN UP</ion-button>
+      <ion-button [routerLink]="['/login']" expand="block" class = "hide-sm">LOGIN</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -22,7 +23,7 @@
     <ion-row>
       <ion-col align-self-center>
       <div class = "background-image">
-        <br><h1>Batangas II Electric Cooperative, Inc.</h1><br>
+        <br><h1 class = "cooperative-name">Batangas II Electric Cooperative, Inc.</h1><br>
         <ion-img class = "responsive-image" 
         src="assets/batelec-logo.png" alt="batelec-image" width = "400" height = "500"></ion-img> 
         <br><br><ion-button class = "get-started" [routerLink]="['/home']" shape = "round" expand="block" color="danger">Get Started</ion-button><br>
