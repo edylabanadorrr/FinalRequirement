@@ -1,0 +1,58 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+
+$host = 'localhost';
+$user_name = 'root';
+$pass_word = '';
+$database = 'ionic-batelec';
+
+$conn = mysqli_connect($host, $user_name, $pass_word, $database);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $data = json_decode(file_get_contents('php://input'), true);
+
+    if (empty($data['ConsumerID'])) {
+        $response = array('status' => 'error', 'message' => 'Invalid Consumer ID');
+        echo json_encode($response);
+        exit;
+    }
+
+    $consumerID = intval($data['ConsumerID']);
+    $firstName = mysqli_real_escape_string($conn, $data['firstName']);
+    $lastName = mysqli_real_escape_string($conn, $data['lastName']);
+    $accountNumber = intval($data['accountNumber']);
+    $areaNumber = intval($data['areaNumber']);
+    $municipality = mysqli_real_escape_string($conn, $data['municipality']);
+    $username = mysqli_real_escape_string($conn, $data['username']);
+    $password = mysqli_real_escape_string($conn, $data['password']);
+
+    $query =    "UPDATE consumertable SET 
+                consumertable.firstName = '$firstName',
+                consumertable.lastName = '$lastName',
+                consumertable.accountNumber = '$accountNumber',
+                consumertable.areaNumber = '$areaNumber',
+                consumertable.municipality = '$municipality',
+                consumertable.username = '$username',
+                consumertable.password = '$password'
+                WHERE consumertable.ConsumerID = '$consumerID'";
+    
+    $query =    "UPDATE billsummarytable SET
+                billsummarytable.firstName = '$firstName',
+                billsummarytable.lastName = '$lastName',
+                billsummarytable.accountNumber = '$accountNumber'
+                WHERE billsummarytable.ConsumerID = '$consumerID';
+
+    if (mysqli_query($conn, $query)) {
+        $response = array('status' => 'success', 'message' => 'Consumer updated successfully');
+        echo json_encode($response);
+    } else {
+        $response = array('status' => 'error', 'message' => 'Failed to update consumer', 'error' => mysqli_error($conn));
+        echo json_encode($response);
+    }
+} else {
+    $response = array('status' => 'error', 'message' => 'Invalid request method');
+    echo json_encode($response);
+}
+?>

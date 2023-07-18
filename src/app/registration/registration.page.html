@@ -9,33 +9,37 @@
 
 <!-- Registration Form -->
 <ion-content>
-    <ion-item lines="full">
-      <ion-label position="floating">First name</ion-label>
-      <ion-input type="text" [(ngModel)] = "firstName" name="firstName" required></ion-input>
+  <div class = "background-image">
+    <div class = "container">
+      <div class = "fill-up">
+        <h1 class = "batelec">BATELEC II</h1>
+        <div class = "fill-up-container">
+    <ion-item lines="full" class = "custom-item">
+      <ion-input type="text" [(ngModel)] = "firstName" name="firstName" placeholder = "First Name" required></ion-input>
     </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Last name</ion-label>
-      <ion-input type="text" [(ngModel)] = "lastName" name="lastName" required ></ion-input>
+
+    <ion-item lines="full" class = "custom-item">
+      <ion-input type="text" [(ngModel)] = "lastName" name="lastName" placeholder = "Last Name" required ></ion-input>
     </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Account Number</ion-label>
-      <ion-input type="number" [(ngModel)] = "accountNumber" name="accountNumber" required></ion-input>
+
+    <ion-item lines="full" class = "custom-item">
+      <ion-input type="number" [(ngModel)] = "accountNumber" name="accountNumber" placeholder = "Account Number" required></ion-input>
     </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Area Number</ion-label>
-      <ion-input type="number" [(ngModel)] = "areaNumber" name="areaNumber" required></ion-input>
+
+    <ion-item lines="full" class = "custom-item">
+      <ion-input type="number" [(ngModel)] = "areaNumber" name="areaNumber" placeholder = "Area number" required></ion-input>
     </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Municipality</ion-label>
-      <ion-input type="text" [(ngModel)] = "municipality" name = "municipality" required></ion-input>
+
+    <ion-item lines="full" class = "custom-item">
+      <ion-input type="text" [(ngModel)] = "municipality" name = "municipality" placeholder = "Municipality" required></ion-input>
     </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Username</ion-label>
-      <ion-input type="text" [(ngModel)] = "username" name="username" required></ion-input>
+
+    <ion-item lines="full" class = "custom-item">
+      <ion-input type="text" [(ngModel)] = "username" name="username" placeholder = "Username" required></ion-input>
     </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" [(ngModel)] = "password" name="password" required></ion-input>
+    
+    <ion-item lines="full" class = "custom-item">
+      <ion-input type="password" [(ngModel)] = "password" name="password" placeholder = "Password" required></ion-input>
     </ion-item>
 
 <!-- Button -->
@@ -44,4 +48,8 @@
         <ion-button shape = "round" expand = "block" type = "submit" color = "danger" (click) = "submitForm()">Sign Up</ion-button>
       </ion-col>
     </ion-row>
-</ion-content>
+    </div>
+    </div>
+    </div>
+    </div>
+    </ion-content>

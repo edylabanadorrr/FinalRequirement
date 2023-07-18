@@ -26,7 +26,7 @@
             <input class="inputText" placeholder="Enter Last name" type="text" [(ngModel)] = "lastName" id = "lastName" name="lastName"><br><br>
     
             <label class="accountnumber-left" for="accountNumber">Account Number:</label><br>
-            <input class="inputText" placeholder="Enter Account number" type="number" [(ngModel)] = "accountNumber" id = "accountNumber" name="accountNumber"><br><br>
+            <input class="inputText" placeholder="Enter Account Number" type="number" [(ngModel)] = "accountNumber" id = "accountNumber" name="accountNumber"><br><br>
     
             <label class="areanumber-left" for="areaNumber">Area Number:</label><br>
             <input class="inputText" placeholder="Enter Area Number" type="number" [(ngModel)] = "areaNumber" id = "areaNumber" name="areaNumber"><br><br>
@@ -51,9 +51,17 @@
           </div>
         </div>
 
+        <div class = "input-accountnumber">
+        <ion-list>
+          <ion-item>
+            <ion-input id="accountNumber" [(ngModel)]="accountNumber" type="number" placeholder="Account Number"></ion-input>
+          </ion-item>
+          <ion-button expand="full" shape = "round" color="success" (click)="fetchConsumerDetails()">View Account Details</ion-button>
+        </ion-list>
+        </div>
+
         <div class = "consumerinfo-table">
           <h1 class="info">Consumer Information</h1>
-          <input class = "search-input" type="text" [(ngModel)]="searchText" placeholder="Search">
           <div class = "table-container">
           <table>
             <tr>
@@ -75,3 +83,5 @@
               <td class = "consumer-data">{{ consumer.password }}</td>
             </tr>
           </table>
+        </div>
+      <small class = "note">Please search your account number again to see the modifications.</small>

@@ -49,17 +49,21 @@ export class BillingInquiryPage implements OnInit {
   }
 
   ngOnInit() {
-    this.loadBillSummary();
   }
 
   loadBillSummary() {
-    this.http.get< any >('http://localhost/ionic/billsummary.php').subscribe(
-      (data) => {
-        this.billSummary = data;
-        console.log(this.billSummary);
+    const url = `http://localhost/ionic/view-billsummary.php?accountNumber=${this.accountNumber}`;
+    this.http.get(url).subscribe(
+      (response: any) => {
+        console.log('Consumer data fetched successfully:', response);
+        if (response.status === 'success') {
+          this.billSummary = response.data;
+        } else {
+          console.error('Failed to fetch consumer bill summary:', response.message);
+        }
       },
       (error) => {
-        console.error('Error fetching user data:', error);
+        console.error('Failed to fetch consumer bill summary:', error);
       }
     );
   }

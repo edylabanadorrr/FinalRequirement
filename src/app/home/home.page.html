@@ -3,23 +3,23 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>
-      Welcome, Consumers!
-    </ion-title>
+    <ion-title>Welcome, Consumers!</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="auth-form">
+  <div class = "background-image">
   <ion-grid>
     <ion-row>
       <ion-col align-self-center>
-        <h1>BATELEC II</h1><br><br>
+        <h1>BATELEC II</h1><br>
         <div class = "button">
-        <ion-button [routerLink]="['/registration']" shape = "round" expand="block" color="primary">Register</ion-button>
-        <p class = "already">Already have an account?</p>
+        <ion-button [routerLink]="['/registration']" shape = "round" expand="block" color="primary">Register</ion-button><br>
+        <p class = "already">Already have an account?</p><br>
         <ion-button [routerLink]="['/login']" shape = "round" expand="block" color="danger">Sign In</ion-button>
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
+  </div>
 </ion-content>

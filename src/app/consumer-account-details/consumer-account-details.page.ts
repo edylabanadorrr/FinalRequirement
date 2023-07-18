@@ -56,18 +56,22 @@ export class ConsumerAccountDetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.fetchConsumerDetails();
   }
     // Fetch Data from database
     fetchConsumerDetails() {
-      this.http.get<any>('http://localhost/ionic/consumer-details.php').subscribe(
-        (data) => {
-          console.log(data); // Log the response data
-          this.consumers = data;
-          console.log(this.consumers);
+      const url = `http://localhost/ionic/view-consumer-details.php?accountNumber=${this.accountNumber}`;
+
+      this.http.get(url).subscribe(
+        (response: any) => {
+          console.log('Consumer data fetched successfully:', response);
+          if (response.status === 'success') {
+            this.consumers = response.data;
+          } else {
+            console.error('Failed to fetch consumer data:', response.message);
+          }
         },
         (error) => {
-          console.error('Error fetching consumer data:', error);
+          console.error('Failed to fetch consumer data:', error);
         }
       );
     }

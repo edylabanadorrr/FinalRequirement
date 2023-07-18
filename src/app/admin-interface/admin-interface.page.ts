@@ -132,6 +132,7 @@ export class AdminInterfacePage implements OnInit {
       });
     }
   }
+  
 deleteConsumer() {
   if (this.selectedConsumer !== null) {
     const ConsumerID = this.selectedConsumer.ConsumerID;

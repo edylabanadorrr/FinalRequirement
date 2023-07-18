@@ -7,15 +7,18 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <div class = "background-image">
+  <div class = "container">
   <form (ngSubmit)="submitLogin(loginForm)" #loginForm="ngForm">
-    <ion-item lines="full">
-      <ion-label position="floating">Account Number</ion-label>
-      <ion-input type="number" name="accountNumber" [(ngModel)]="accountNumber" required></ion-input>
+    <div class = "fill-up">
+      <h1 class = "batelec">BATELEC II</h1>
+      <div class = "fill-up-container">
+    <ion-item lines="full" class = "custom-item">
+      <ion-input type="number" name="accountNumber" [(ngModel)]="accountNumber" placeholder = "Account Number" required></ion-input>
     </ion-item>
 
-    <ion-item lines="full">
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" name="password" [(ngModel)]="password" required></ion-input>
+    <ion-item lines="full" class = "custom-item">
+      <ion-input type="password" name="password" [(ngModel)]="password" placeholder = "Password" required></ion-input>
     </ion-item>
 
     <!-- Error message -->
@@ -28,5 +31,9 @@
         <a [routerLink]="['/forgot-password']" class="forgot-password">Forgot Password?</a>
       </ion-col>
       </ion-row>
+      </div>
+      </div>
     </form>
+    </div>
+    </div>
 </ion-content>
